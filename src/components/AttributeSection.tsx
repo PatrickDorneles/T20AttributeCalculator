@@ -1,1 +1,3 @@
-export const Attribute = () => (<></>)
+export const AttributeSection = () => (<>
+
+</>)

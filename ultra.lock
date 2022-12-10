@@ -1491,6 +1491,14 @@
       "integrity": "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
     }
   },
+  "lodash": {
+    "4.17.21": {
+      "path": "/node_modules/lodash",
+      "cache": "/lodash/4.17.21",
+      "tarball": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
+      "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
+    }
+  },
   "loose-envify": {
     "1.4.0": {
       "path": "/node_modules/loose-envify",
@@ -2119,6 +2127,14 @@
       "cache": "/supports-preserve-symlinks-flag/1.0.0",
       "tarball": "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz",
       "integrity": "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
+    }
+  },
+  "tailwind-heropatterns": {
+    "0.0.8": {
+      "path": "/node_modules/tailwind-heropatterns",
+      "cache": "/tailwind-heropatterns/0.0.8",
+      "tarball": "https://registry.npmjs.org/tailwind-heropatterns/-/tailwind-heropatterns-0.0.8.tgz",
+      "integrity": "sha512-no7lc5K9TF5Jy8GyfIq/F1/nS2HbwGPObwaeauRQJLZybE41BkCCVyew23O1m3ljYSE436YwHdNuphxfKF7ZgA=="
     }
   },
   "tailwindcss": {
