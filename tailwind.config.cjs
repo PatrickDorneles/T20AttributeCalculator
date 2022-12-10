@@ -18,9 +18,8 @@ const bgHero = require("tailwind-heropatterns")({
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    
     fontFamily: {
-      'display': ['Hammersmith One']
+      'display': ['Hammersmith One', 'sans-serif']
     },
     extend: {
     },
