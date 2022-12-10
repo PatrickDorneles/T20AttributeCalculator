@@ -92,7 +92,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
         </div>
 
         <div title="Base Field" className="flex flex-col items-center justify-center h-min" > 
-            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"  
+            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"git   
                 onClick={() => addToField('base')}
                 disabled={
                     attribute.base >= 4 || 
@@ -105,7 +105,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg" disabled value={attribute.base} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.base} />
             
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
                 onClick={() => subFromField('base')}
@@ -125,7 +125,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                     <ChevronUpIcon className="w-6 text-white" />
                 </button>
 
-                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg" disabled value={attribute.racial} />
+                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.racial} />
                 
                 <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
                     onClick={() => subFromField('racial')}
@@ -134,7 +134,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 </button>
             </div>
         ) : (
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg" disabled value={attribute.racial} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.racial} />
         ) }
 
         <span className="text-lg text-white font-bold">+</span>
@@ -146,7 +146,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg" disabled value={attribute.other} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.other} />
             
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
                 onClick={() => subFromField('other')}
@@ -157,6 +157,6 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
 
         <span className="text-lg text-white font-bold">=</span>
 
-        <input type="text" className="w-12 py-1 text-center bg-red-600 text-white text-lg rounded" disabled value={totalSum} />
+        <input type="text" className="w-12 py-1 text-center bg-red-600 text-white text-lg rounded opacity-100" disabled value={totalSum} />
     </div>)
 }
