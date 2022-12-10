@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.background-pattern {
+    background-color: #B71C1C;
+    opacity: 0.9;
+    background-image: radial-gradient(circle at center center, #000000, #B71C1C), repeating-radial-gradient(circle at center center, #000000, #000000, 10px, transparent 20px, transparent 10px);
+    background-blend-mode: multiply;
+}
