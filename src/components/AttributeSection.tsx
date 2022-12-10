@@ -1,3 +1,6 @@
-export const AttributeSection = () => (<>
+export const AttributeSection = () => {
 
-</>)
+    return (<div>
+
+    </div>)
+}
