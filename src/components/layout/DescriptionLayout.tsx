@@ -2,8 +2,8 @@ export const DescriptionLayout = () => <section className="bg-black py-10 px-4 t
     <article className="flex flex-col gap-4">
     <h1 className="text-4xl mt-12 font-bold">What is this application?</h1>
     <p>
-        It is a calculator to calculate attributes to characters for
-        a Brazilian &quot;TTRPG&quot; (Table Top Role Playing Game) 
+        It is a calculator to help you building attributes to characters from
+        a Brazilian &quot;TTRPG&quot; (Table Top Role Playing Game)
         called Tormenta20, very famous on Brazil.
         Its system is an adaptation from D20 SRD with his 
         own scenario, a medieval fantasy with some inspirations

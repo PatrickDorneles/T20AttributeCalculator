@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    overflow-y: overlay;
+}
 
-.background-pattern {
-    background-color: #B71C1C;
-    opacity: 0.9;
-    background-image: radial-gradient(circle at center center, #000000, #B71C1C), repeating-radial-gradient(circle at center center, #000000, #000000, 10px, transparent 20px, transparent 10px);
-    background-blend-mode: multiply;
+::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #B71C1C77;    /* color of the scroll thumb */
 }

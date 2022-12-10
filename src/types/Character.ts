@@ -3,8 +3,8 @@ import type { Race } from "./BookResources"
 
 export type Character = {
     name: string
-    race: Race
-    points: number
+    race: Race | null
+    points: { total: number, left: number }
 
     attrs: {
         strength: Attribute

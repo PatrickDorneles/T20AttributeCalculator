@@ -23,6 +23,14 @@
       "integrity": "sha512-uj3pT6Mg+3t39fvLrj8iuCIJ38zKO9FpGtJ4BBJebJhEwjoT+KLVNCcHT5QC9NGRIEi7fZ0ZR8YRb884auB4Lg=="
     }
   },
+  "@heroicons/react": {
+    "2.0.13": {
+      "path": "/node_modules/@heroicons/react",
+      "cache": "/@heroicons/react/2.0.13",
+      "tarball": "https://registry.npmjs.org/@heroicons/react/-/react-2.0.13.tgz",
+      "integrity": "sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ=="
+    }
+  },
   "@humanwhocodes/config-array": {
     "0.11.7": {
       "path": "/node_modules/@humanwhocodes/config-array",
