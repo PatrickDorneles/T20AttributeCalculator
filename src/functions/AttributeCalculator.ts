@@ -1,6 +1,6 @@
 import type { Attribute } from "../types/Attribute"
 
-export type ValidBaseAttributes = 
+export type ValidBaseAttribute = 
     -1 | 0 | 1 | 2 | 3 | 4
 
 const AttributeCostMap = {
@@ -19,9 +19,9 @@ export const getTotalAttribute = (attribute: Attribute) =>
     attribute.base + attribute.racial + attribute.other
 
 export const getAttributeCost = 
-    (value: ValidBaseAttributes) => AttributeCostMap[value] 
+    (value: ValidBaseAttribute) => AttributeCostMap[value] 
 
-export const getNearAttributes = (value: ValidBaseAttributes) => {
+export const getNearAttributes = (value: ValidBaseAttribute) => {
     type ValidAttributes = keyof typeof AttributeCostMap
     const previousCost = AttributeCostMap[value - 1 as ValidAttributes]
     const nextCost = AttributeCostMap[value+1 as ValidAttributes]
