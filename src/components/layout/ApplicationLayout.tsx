@@ -24,7 +24,7 @@ export const ApplicationLayout = () => {
         }))
     }, [char.attrs])
 
-    return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography ">
+    return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-12">
         <Logo className="h-24 w-24" />
         <div className="flex flex-col items-center justify-center px-4">
             <h1 className="text-white text-4xl font-bold font-display text-center">T20AC</h1>
