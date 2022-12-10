@@ -92,7 +92,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
         </div>
 
         <div title="Base Field" className="flex flex-col items-center justify-center h-min" > 
-            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"git   
+            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"   
                 onClick={() => addToField('base')}
                 disabled={
                     attribute.base >= 4 || 
