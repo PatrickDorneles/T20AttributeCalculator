@@ -53,7 +53,7 @@ has a cost and set of values to roll for the dice system.
 | 4 | 7 points | 18 |
 
 # Who made this?
-Hi, my name is Patrick Dorneles and I am a RPG player and DM, software developer and aspiring
+Hi, my name is Patrick Dorneles and I am a RPG player, software developer and aspiring
 game developer, I love RPG and play on Arton since 2016 where I discovered the Tormenta RPG
 book, and it was always awesome, now with this new version I liked a lot this new attribute
 system but since there was many calculators for the legacy D&D inspired modifier system but
