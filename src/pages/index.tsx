@@ -6,6 +6,7 @@ import { version as versionAtom } from '../atoms/version'
 import { useAtom } from "jotai";
 import { activeCharacter, characters, defaultCharacter } from "../atoms/characters";
 import { useEffect } from "react";
+import { version as currentVersion } from '../../package.json'
 
 const Home: NextPage = () => {
   const [version, setVersion] = useAtom(versionAtom)
@@ -13,10 +14,10 @@ const Home: NextPage = () => {
   const [, setChars] = useAtom(characters)
 
   useEffect(() => {
-    if(version !== process.env.VERSION) {
+    if(version !== currentVersion) {
       setChar(defaultCharacter)
       setChars([])
-      setVersion(process.env.VERSION || '0.0.1')
+      setVersion(currentVersion || '0.0.1')
     }
   }, [version, setChar, setChars, setVersion])
 

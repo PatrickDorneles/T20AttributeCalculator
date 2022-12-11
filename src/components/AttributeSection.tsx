@@ -6,7 +6,6 @@ import type { FC} from "react";
 import { useEffect } from "react"
 import type { Character } from "../types/Character"
 import { RacialBonusMap } from "../resources/RacialBonusMap"
-import { strict } from "assert"
 import type { ValidBaseAttribute } from "../functions/AttributeCalculator";
 import { getAttributeCost } from "../functions/AttributeCalculator";
 import { assertValidBaseAttribute } from "../functions/AssertValidBaseAttribute";

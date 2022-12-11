@@ -7,6 +7,7 @@ import { AttributeGroup } from "../AttributeSection"
 import { Logo } from "../svg/Logo"
 import { Listbox } from '@headlessui/react'
 import { RacialBonusMap } from "../../resources/RacialBonusMap";
+import { version as CurrentVersion } from '../../../package.json'
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
@@ -28,7 +29,7 @@ export const ApplicationLayout = () => {
         }
     }, [char.race, setChar])
 
-    useEffect(() => {
+    useEffect(() => { 
         const totalCost = 
             getAttributeCost(char.attrs.strength.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.dexterity.base as ValidBaseAttribute)
