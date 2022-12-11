@@ -25,3 +25,7 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: #B71C1C77;    /* color of the scroll thumb */
 }
+
+section::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+}
