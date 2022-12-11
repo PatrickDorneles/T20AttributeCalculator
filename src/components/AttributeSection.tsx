@@ -37,7 +37,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
     const shouldShowOptionsOnRacialBonusInput =
         !raceBonus 
         || raceBonus.type === "choice"
-        || (raceBonus.type === 'mixed' && raceBonus.attrs[name] == 0)
+        || (raceBonus.type === 'mixed' && raceBonus.attrs[name] === 0)
         || raceBonus.type === "free"
 
     const totalSum = attribute.base + attribute.race + attribute.other

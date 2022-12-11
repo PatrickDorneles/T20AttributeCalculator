@@ -4,7 +4,7 @@ import { ApplicationLayout } from "../components/layout/ApplicationLayout";
 import { DescriptionLayout } from "../components/layout/DescriptionLayout";
 import { version as versionAtom } from '../atoms/version'
 import { useAtom } from "jotai";
-import { activeCharacter, characters, defaultCharacter } from "../atoms/characters";
+import { activeCharacter, characters, getDefaultCharacter } from "../atoms/characters";
 import { useEffect } from "react";
 import packageInfo from '../../package.json'
 
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if(version !== packageInfo.version) {
-      setChar(defaultCharacter)
+      setChar(getDefaultCharacter())
       setChars([])
       setVersion(packageInfo.version || '0.0.1')
     }

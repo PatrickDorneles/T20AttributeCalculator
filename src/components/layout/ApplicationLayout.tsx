@@ -1,6 +1,6 @@
 import { useAtom } from "jotai"
 import { useEffect } from "react"
-import { activeCharacter } from "../../atoms/characters"
+import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
 import type { ValidBaseAttribute } from "../../functions/AttributeCalculator";
 import { getAttributeCost } from "../../functions/AttributeCalculator"
 import { AttributeGroup } from "../AttributeSection"
@@ -78,6 +78,7 @@ export const ApplicationLayout = () => {
                         </Listbox.Options>
                     </div>
                 </Listbox>
+                <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">Reset</button>
             </section>
             
             <div>

@@ -5,7 +5,7 @@ import { Race } from '../types/BookResources'
 
 export const characters = atomWithStorage<Character[]>('chars', [])
 
-export const defaultCharacter = {
+export const getDefaultCharacter = () => ({
     id: nanoid(),
     name: "",
     points: { total: 10, left: 10 },
@@ -18,6 +18,6 @@ export const defaultCharacter = {
         charisma: { base: 0, other: 0, race: 0 },
     },
     race: Race.Other
-}
+})
 
-export const activeCharacter = atomWithStorage<Character>("active", defaultCharacter)
+export const activeCharacter = atomWithStorage<Character>("active", getDefaultCharacter())

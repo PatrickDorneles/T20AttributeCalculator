@@ -10,7 +10,7 @@ export const DescriptionLayout = () => {
         fetch('./md/description.en.md')
             .then(res => res.text())
             .then(setText)
-    })
+    }, [setText])
 
     return <section className="bg-black py-10 px-4 text-white">
         <ReactMarkdown 
