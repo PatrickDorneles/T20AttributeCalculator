@@ -7,7 +7,6 @@ import { AttributeGroup } from "../AttributeSection"
 import { Logo } from "../svg/Logo"
 import { Listbox } from '@headlessui/react'
 import { RacialBonusMap } from "../../resources/RacialBonusMap";
-import { version as CurrentVersion } from '../../../package.json'
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
@@ -57,13 +56,6 @@ export const ApplicationLayout = () => {
             >
                 <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">Race: {char.race || 'Other'}</Listbox.Button>
                 <Listbox.Options className="">
-                    <Listbox.Option
-                        defaultChecked
-                        key={null}
-                        value={null}
-                    >
-                        Other
-                    </Listbox.Option>
                     {raceOptions.map((race) => (
                         <Listbox.Option
                             key={race}
