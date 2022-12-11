@@ -20,7 +20,8 @@ export const DescriptionLayout = () => {
                 'tr': ({ children }) => <tr className=''>{ children }</tr>,
                 'td': ({ children }) => <td className='border-white border-solid border-2 py-1 px-2' >{ children }</td>,
                 'th': ({ children }) => <th className='border-white border-solid border-2 py-1 px-2' >{ children }</th>,
-                'a': ({ children, href }) => <a className='text-blue-500 cursor-pointer' href={href} >{ children }</a>
+                'a': ({ children, href }) => <a className='text-blue-500 cursor-pointer' href={href} >{ children }</a>,
+                'img': (props) => <img className='inline' {...props} />,
             }}
             className="flex flex-col gap-4" 
             remarkPlugins={[remarkGfm]} >

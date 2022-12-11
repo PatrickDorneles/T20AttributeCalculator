@@ -7,19 +7,19 @@ Its system is an adaptation from D20 SRD with his
 own scenario, a medieval fantasy with some inspirations
 on anime.
 
-In this universe called Arton there is an phenomena called 
-Tormenta, an corrupted storm from another dimension that brings 
+In this universe called Arton there is a phenomenon called 
+Tormenta (that gives the system its name): it is 
+a corrupted storm from another dimension that brings 
 with it corrupted demon creatures called Lefeu, this storm
-also affect humanoids corrupting them and transforming its 
-bodies.
+also affect humanoids corrupting them and the places where it happens.
 
-Also there is an importance for the number 20 on this RPG, that
+There is an importance for the number 20 on this RPG, that
 came from the 20 years since the first release of the scenario,
 the 20 major gods that control this world and the 20-sided 
 die (a classic and important dice for the game), all this led 
 its writers to name the most recent version as **Tormenta 20**.
 
-![Capa T20](./assets/t20-basico-jogo-do-ano-removebg-preview.png)
+![Capa T20 Edicao Jogo do Ano](./assets/t20-basico-jogo-do-ano-removebg-preview.png)  
 Cover of Tormenta 20 Edição Jogo do Ano  
 Image from [Jambo Editora](https://jamboeditora.com.br/produto/tormenta20-edicao-jogo-do-ano/)
 

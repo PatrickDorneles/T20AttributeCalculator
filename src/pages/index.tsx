@@ -5,7 +5,7 @@ import { DescriptionLayout } from "../components/layout/DescriptionLayout";
 import { version as versionAtom } from '../atoms/version'
 import { useAtom } from "jotai";
 import { activeCharacter, characters, getDefaultCharacter } from "../atoms/characters";
-import { useEffect } from "react";
+import {  useEffect } from "react";
 import packageInfo from '../../package.json'
 
 const Home: NextPage = () => {
@@ -37,6 +37,7 @@ const Home: NextPage = () => {
       <main >
         <ApplicationLayout />
         <DescriptionLayout />
+        <var dangerouslySetInnerHTML={{ __html: "<!-- Made by Patrick Dorneles (https://github.com/PatrickDorneles) -->" }} />
       </main>
     </>
   );
