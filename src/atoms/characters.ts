@@ -1,18 +1,22 @@
 import { atomWithStorage } from 'jotai/utils'
 import type { Character } from '../types/Character'
+import { nanoid } from 'nanoid'
 
 export const characters = atomWithStorage<Character[]>('chars', [])
 
-export const activeCharacter = atomWithStorage<Character>("active", {
+export const defaultCharacter = {
+    id: nanoid(),
     name: "",
-    points: { total: 20, left: 20 },
+    points: { total: 10, left: 10 },
     attrs: {
-        strength: { base: 0, other: 0, racial: 0 },
-        dexterity: { base: 0, other: 0, racial: 0 },
-        constitution: { base: 0, other: 0, racial: 0 },
-        intelligence: { base: 0, other: 0, racial: 0 },
-        wisdom: { base: 0, other: 0, racial: 0 },
-        charisma: { base: 0, other: 0, racial: 0 },
+        strength: { base: 0, other: 0, race: 0 },
+        dexterity: { base: 0, other: 0, race: 0 },
+        constitution: { base: 0, other: 0, race: 0 },
+        intelligence: { base: 0, other: 0, race: 0 },
+        wisdom: { base: 0, other: 0, race: 0 },
+        charisma: { base: 0, other: 0, race: 0 },
     },
     race: null
-})
+}
+
+export const activeCharacter = atomWithStorage<Character>("active", defaultCharacter)

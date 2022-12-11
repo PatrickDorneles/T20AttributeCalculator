@@ -16,7 +16,7 @@ const AttributeCostMap = {
 
 
 export const getTotalAttribute = (attribute: Attribute) =>
-    attribute.base + attribute.racial + attribute.other
+    attribute.base + attribute.race + attribute.other
 
 export const getAttributeCost = 
     (value: ValidBaseAttribute) => AttributeCostMap[value] 

@@ -2,6 +2,9 @@ import type { RacialBonus } from "../types/BookResources";
 import { Race } from "../types/BookResources";
 
 export const RacialBonusMap = new Map<Race, RacialBonus>([
+    [Race.Other, {
+        type: "free"
+    }],
     [Race.Aggelus, {
         type: 'strict',
         attrs: {

@@ -2,8 +2,26 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { ApplicationLayout } from "../components/layout/ApplicationLayout";
 import { DescriptionLayout } from "../components/layout/DescriptionLayout";
+import { version as versionAtom } from '../atoms/version'
+import { useAtom } from "jotai";
+import { activeCharacter, characters, defaultCharacter } from "../atoms/characters";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
+  const [version, setVersion] = useAtom(versionAtom)
+  const [, setChar] = useAtom(activeCharacter)
+  const [, setChars] = useAtom(characters)
+
+  useEffect(() => {
+    if(version !== process.env.VERSION) {
+      setChar(defaultCharacter)
+      setChars([])
+      setVersion(process.env.VERSION || '0.0.1')
+    }
+  }, [version, setChar, setChars, setVersion])
+
+
+
   return (
     <>
       <Head>

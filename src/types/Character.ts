@@ -2,6 +2,7 @@ import type { Attribute } from "./Attribute"
 import type { Race } from "./BookResources"
 
 export type Character = {
+    id: string
     name: string
     race: Race | null
     points: { total: number, left: number }

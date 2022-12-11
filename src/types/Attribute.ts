@@ -1,6 +1,6 @@
 
 export type Attribute = {
     base: number
-    racial: number
+    race: number
     other: number
 }

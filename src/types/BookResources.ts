@@ -1,21 +1,22 @@
 export enum Race {
-    Human,
-    Dwarf,
-    Dahllan,
-    Elf,
-    Goblin,
-    Lefou,
-    Minotaur,
-    Qareen,
-    Hynne,
-    Kliren,
-    Medusa,
-    Osteon,
-    Merfolk,
-    Silfide,
-    Sulfure,
-    Aggelus,
-    Trog
+    Other = 'Other',
+    Human = 'Human',
+    Dwarf = 'Dwarf',
+    Dahllan = 'Dahllan',
+    Elf = 'Elf',
+    Goblin = 'Goblin',
+    Lefou = 'Lefou',
+    Minotaur = 'Minotaur',
+    Qareen = 'Qareen',
+    Hynne = 'Hynne',
+    Kliren = 'Kliren',
+    Medusa = 'Medusa',
+    Osteon = 'Osteon',
+    Merfolk = 'Merfolk',
+    Silfide = 'Silfide',
+    Sulfure = 'Sulfure',
+    Aggelus = 'Aggelus',
+    Trog = 'Trog'
 }
 
 
@@ -47,4 +48,6 @@ export type RacialBonus = {
         wisdom: number
         charisma: number
     }
+} | {
+    type: 'free'
 }

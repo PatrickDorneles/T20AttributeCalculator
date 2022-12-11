@@ -26,42 +26,42 @@ const IconFromName: {
 }
 
 
+
+
 export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name }) => {
     const [char, setChar] = useAtom(activeCharacter)
     const Icon = IconFromName[name]
     const attribute = char.attrs[name]
 
-    const racialBonus = char.race && RacialBonusMap.get(char.race)
+    const raceBonus = char.race && RacialBonusMap.get(char.race)
 
     const shouldShowOptionsOnRacialBonusInput =
-        !racialBonus 
-        || racialBonus.type === "choice"
-        || (racialBonus.type === 'mixed' && racialBonus.attrs[name] == 0)
+        !raceBonus 
+        || raceBonus.type === "choice"
+        || (raceBonus.type === 'mixed' && raceBonus.attrs[name] == 0)
+        || raceBonus.type === "free"
 
-    const totalSum = attribute.base + attribute.racial + attribute.other
+    const totalSum = attribute.base + attribute.race + attribute.other
 
     useEffect(() => {
-        if(racialBonus && racialBonus.type !== 'choice') {
+        if(raceBonus && raceBonus.type !== 'choice' && raceBonus.type !== 'free') {
             setChar((char) => ({
                 ...char,
                 attrs: {
-                    strength: { ...char.attrs.strength, racial: racialBonus.attrs.strength },
-                    dexterity: { ...char.attrs.dexterity, racial: racialBonus.attrs.dexterity },
-                    constitution: { ...char.attrs.constitution, racial: racialBonus.attrs.constitution },
-                    intelligence: { ...char.attrs.intelligence, racial: racialBonus.attrs.intelligence },
-                    wisdom: { ...char.attrs.wisdom, racial: racialBonus.attrs.wisdom },
-                    charisma: { ...char.attrs.charisma, racial: racialBonus.attrs.charisma },
+                    strength: { ...char.attrs.strength, race: raceBonus.attrs.strength },
+                    dexterity: { ...char.attrs.dexterity, race: raceBonus.attrs.dexterity },
+                    constitution: { ...char.attrs.constitution, race: raceBonus.attrs.constitution },
+                    intelligence: { ...char.attrs.intelligence, race: raceBonus.attrs.intelligence },
+                    wisdom: { ...char.attrs.wisdom, race: raceBonus.attrs.wisdom },
+                    charisma: { ...char.attrs.charisma, race: raceBonus.attrs.charisma },
                 }
             }))
         }
-    }, [racialBonus, setChar])
+    }, [raceBonus, setChar])
 
     function changeFieldValue(field: keyof Character['attrs'][AttributesNames], newValue: number) {
-        let cost = 0
-        
         if(field == 'base') {
             assertValidBaseAttribute(newValue)
-            cost = getAttributeCost(newValue)
         }
 
         // Overcomplicated shit, surely there's a way better way to do this
@@ -105,7 +105,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.base} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.base} />
             
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
                 onClick={() => subFromField('base')}
@@ -117,24 +117,33 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
 
         <span className="text-lg text-white font-bold">+</span>
 
-        { shouldShowOptionsOnRacialBonusInput? (
-            <div title="Racial Field" className="flex flex-col items-center justify-center h-min" > 
-                <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"  
-                    onClick={() => addToField('racial')}
+        { shouldShowOptionsOnRacialBonusInput ? (
+            <div title="Race Field" className="flex flex-col items-center justify-center h-min" > 
+                <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"  
+                    onClick={() => addToField('race')}
+                    disabled={
+                        raceBonus?.type !== 'free' &&
+                        raceBonus?.type !== 'strict' && ( 
+                        attribute.race === raceBonus?.maxPerAttribute 
+                        || Object.values(char.attrs).reduce((
+                            (previous, attribute) => previous + Math.max(attribute.race, 0)), 0
+                        ) >= (raceBonus?.pointsToChoose || 0)
+                    )}
                 > 
                     <ChevronUpIcon className="w-6 text-white" />
                 </button>
 
-                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.racial} />
+                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.race} />
                 
-                <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
-                    onClick={() => subFromField('racial')}
+                <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
+                    onClick={() => subFromField('race')}
+                    disabled={ raceBonus?.type !== 'free' && attribute.race <= 0}
                 >
                     <ChevronDownIcon className="w-6 text-white" />
                 </button>
             </div>
         ) : (
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.racial} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded" disabled value={attribute.race} />
         ) }
 
         <span className="text-lg text-white font-bold">+</span>
@@ -146,7 +155,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100" disabled value={attribute.other} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.other} />
             
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
                 onClick={() => subFromField('other')}
