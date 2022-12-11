@@ -16,7 +16,9 @@
     "jotai": "1.11.1",
     "@heroicons/react": "2.0.13",
     "@headlessui/react": "1.7.5",
-    "nanoid": "4.0.0"
+    "nanoid": "4.0.0",
+    "react-markdown": "8.0.4",
+    "remark-gfm": "3.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
