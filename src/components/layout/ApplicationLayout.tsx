@@ -54,8 +54,8 @@ export const ApplicationLayout = () => {
             <section title="Character Info" className="flex gap-4">
                 <input 
                     type="text" 
-                    placeholder="Nome do Personagem" 
-                    className="rounded py-1 px-2 bg-transparent ring-offset-0 ring-2 ring-red-500 outline-none text-white placeholder:text-red-600"
+                    placeholder="Personagem" 
+                    className="rounded py-1 px-2 bg-transparent ring-offset-0 ring-2 ring-red-500 outline-none text-white placeholder:text-red-600 w-32"
                     value={char.name || ''}
                     onChange={({target}) => setChar((char) => ({ ...char, name: target.value }))}
                 />
