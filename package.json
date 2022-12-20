@@ -9,16 +9,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "1.7.5",
+    "@heroicons/react": "2.0.13",
+    "jotai": "1.11.1",
+    "nanoid": "4.0.0",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "^3.18.0",
-    "jotai": "1.11.1",
-    "@heroicons/react": "2.0.13",
-    "@headlessui/react": "1.7.5",
-    "nanoid": "4.0.0",
     "react-markdown": "8.0.4",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "3.0.1",
+    "tree-sitter-cli": "^0.20.7",
+    "zod": "^3.18.0",
+    "tree-sitter": "0.20.1",
+    "next-intl": "2.10.2"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

@@ -9,6 +9,7 @@ import { RacialBonusMap } from "../resources/RacialBonusMap"
 import type { ValidBaseAttribute } from "../functions/AttributeCalculator";
 import { getAttributeCost } from "../functions/AttributeCalculator";
 import { assertValidBaseAttribute } from "../functions/AssertValidBaseAttribute";
+import { useTranslations } from 'next-intl'
 
 type AttributesNames = keyof Character['attrs']
 
@@ -41,6 +42,8 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
         || raceBonus.type === "free"
 
     const totalSum = attribute.base + attribute.race + attribute.other
+
+    const t = useTranslations("Main.calculator.attributeNames")
 
     useEffect(() => {
         if(raceBonus && raceBonus.type !== 'choice' && raceBonus.type !== 'free') {
@@ -87,7 +90,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
     return (<div className="flex items-center gap-2 w-full">
         <div className="flex flex-col gap-2 items-center justify-center mr-8">
             <Icon className="w-10 h-10" />
-            <span className="text-white text-lg font-bold w-10 uppercase text-center">{name.slice(0,3)}</span>
+            <span className="text-white text-lg font-bold w-10 uppercase text-center">{t(name)}</span>
         </div>
 
         <div title="Base Field" className="flex flex-col items-center justify-center h-min" > 

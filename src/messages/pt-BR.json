@@ -1,0 +1,48 @@
+{
+    "Main": {
+        "subheading": "Uma calculadora de atributos para Tormenta20 - Edição Jogo do Ano",
+        "nameInputPlaceholder": "Personagem",
+        "resetButton": "Resetar",
+        "raceSelector": {
+            "button": "Raça: {race}"
+        },
+        "pointsLeft": "Pontos Restantes: {points}",
+        "races": {
+            "Other": "Outro",
+            "Human": "Humano/a",
+            "Dwarf": "Anã(o)",
+            "Dahllan": "Dahllan",
+            "Elf": "Elfo/a",
+            "Goblin": "Goblin",
+            "Lefou": "Lefou",
+            "Minotaur": "Minotauro",
+            "Qareen": "Qareen",
+            "Hynne": "Hynne",
+            "Kliren": "Kliren",
+            "Medusa": "Medusa",
+            "Osteon": "Osteon",
+            "Merfolk": "Sereia/Tritão",
+            "Silfide": "Silfide",
+            "Sulfure": "Sulfure",
+            "Aggelus": "Aggelus",
+            "Trog": "Trog"
+        },
+        "calculator": {
+            "heading": {
+                "name": "Nome",
+                "base": "Base",
+                "racial": "Racial",
+                "other": "Outro",
+                "total": "Total"
+            },
+            "attributeNames": {
+                "strength": "FOR",
+                "dexterity": "DES",
+                "constitution": "CON",
+                "intelligence": "INT",
+                "wisdom": "SAB",
+                "charisma": "CAR"
+            }
+        }
+    }
+}
