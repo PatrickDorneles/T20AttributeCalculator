@@ -40,7 +40,7 @@ rolling a 4d6 taking the 3 highest and looking into the table to
 define the attribute, the other one is a **points system**,
 which this calculator is made for. In this system you have 10
 points to define how to distribute your attributes, each value
-has a cost and set of values to roll for the dice system.
+has a cost in points.
 
 | Attribute | Cost | Roll |
 |:---:|:---:|:---:|
@@ -52,9 +52,9 @@ has a cost and set of values to roll for the dice system.
 | 3 | 4 points | 16-17 |
 | 4 | 7 points | 18 |
 
-# Who made this?
+# Who created this?
 Hi, my name is Patrick Dorneles and I am a RPG player, software developer and aspiring
-game developer, I love RPG and play on Arton since 2016 where I discovered the Tormenta RPG
+game developer. I do love RPG and been playing on Arton since 2016 where I discovered the Tormenta RPG
 book, and it was always awesome, now with this new version I liked a lot this new attribute
 system but since there was many calculators for the legacy D&D inspired modifier system but
 no calculators for this one I feeled that I could do it. If you can I will love any help or

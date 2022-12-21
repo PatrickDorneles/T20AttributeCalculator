@@ -1,16 +1,21 @@
+import { useRouter } from 'next/router';
+import type { FC} from 'react';
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 
 export const DescriptionLayout = () => {
+    const { locale } = useRouter()
     const [text, setText] = useState('')
 
+    console.log(locale)
+
     useEffect(() => {
-        fetch('./md/description.en.md')
+        fetch(`./md/description.${locale}.md`)
             .then(res => res.text())
             .then(setText)
-    }, [setText])
+    }, [setText, locale])
 
     return <section className="bg-black py-10 px-4 text-white">
         <ReactMarkdown 

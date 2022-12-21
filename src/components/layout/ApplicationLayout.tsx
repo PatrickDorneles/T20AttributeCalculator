@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { useEffect } from "react"
+import { Fragment, useEffect } from "react"
 import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
 import type { ValidBaseAttribute } from "../../functions/AttributeCalculator";
 import { getAttributeCost } from "../../functions/AttributeCalculator"
@@ -63,23 +63,31 @@ export const ApplicationLayout = () => {
                     onChange={({target}) => setChar((char) => ({ ...char, name: target.value }))}
                 />
                 <Listbox 
+                    as="div"
+                    className="relative"
                     value={char.race}
                     onChange={(race) => setChar((char) => ({ ...char, race }))}
                 >
-                    <div className="relative">
-                        <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">{t('raceSelector.button', { race: t(`races.${char.race}`) })}</Listbox.Button>
-                        <Listbox.Options className="flex flex-col absolute bg-red-900 mt-4 w-full max-h-[50vh] overflow-y-auto overscroll-auto rounded z-50">
-                            {raceOptions.map((race) => (
-                                <Listbox.Option
-                                    key={race}
-                                    value={race}
-                                    className="text-center p-2 text-white hover:bg-red-700 active:brightness-150 cursor-pointer"
-                                >
-                                    {t(`races.${race}`)}
-                                </Listbox.Option>
-                            ))}
-                        </Listbox.Options>
-                    </div>
+                    <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">{t('raceSelector.button', { race: t(`races.${char.race}`) })}</Listbox.Button>
+                    <Listbox.Options className="flex flex-col absolute bg-red-900 mt-4 w-full max-h-[50vh] overflow-y-auto overscroll-auto rounded z-50 outline-none">
+                        {raceOptions.map((race) => (
+                            <Listbox.Option
+                                key={race}
+                                value={race}
+                                as={Fragment}
+                                
+                            >
+                                {
+                                    ({ active, selected }) =>
+                                        <button 
+                                            className={`text-center p-2 text-white active:brightness-150 :bg-white cursor-pointer ${ active && 'bg-red-700'} ${ selected && 'border-2 border-red-200'}`}
+                                        >
+                                            {t(`races.${race}`)}
+                                        </button>
+                                }
+                            </Listbox.Option>
+                        ))}
+                    </Listbox.Options>
                 </Listbox>
                 <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('resetButton')}</button>
             </section>
