@@ -1,23 +1,12 @@
-# What is this application?
+# O que é isso?
+
+É uma calculadora para ajudar você a determinar os atributos para personages
+de um &quot;TTRPG&quot; (Table Top Role Playing Game) chamado Tormenta20, muito
+famoso no Brasil.
 
 It is a calculator to help you building attributes to characters from
 a Brazilian &quot;TTRPG&quot; (Table Top Role Playing Game)
 called Tormenta20, very famous on Brazil.
-Its system is an adaptation from D20 SRD with his 
-own scenario, a medieval fantasy with some inspirations
-on anime.
-
-In this universe called Arton there is a phenomenon called 
-Tormenta (that gives the system its name): it is 
-a corrupted storm from another dimension that brings 
-with it corrupted demon creatures called Lefeu, this storm
-also affect humanoids corrupting them and the places where it happens.
-
-There is an importance for the number 20 on this RPG, that
-came from the 20 years since the first release of the scenario,
-the 20 major gods that control this world and the 20-sided 
-die (a classic and important dice for the game), all this led 
-its writers to name the most recent version as **Tormenta 20**.
 
 ![Capa T20 Edicao Jogo do Ano](./assets/t20-basico-jogo-do-ano-removebg-preview.png)  
 Capa de Tormenta 20 Edição Jogo do Ano  
@@ -42,7 +31,7 @@ para definir seus atributos, cada valor tem um custo em pontos.
 
 | Atributo | Custo | Rolagem |
 |:---:|:---:|:---:|
-| -2 | - | 7 or less |
+| -2 | - | 7 ou menos |
 | -1 | -1 ponto | 8-9 |
 | 0 | 0 ponto | 10-11 |
 | 1 | 1 ponto | 12-13 |
