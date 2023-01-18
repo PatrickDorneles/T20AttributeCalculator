@@ -4,10 +4,6 @@
 de um &quot;TTRPG&quot; (Table Top Role Playing Game) chamado Tormenta20, muito
 famoso no Brasil.
 
-It is a calculator to help you building attributes to characters from
-a Brazilian &quot;TTRPG&quot; (Table Top Role Playing Game)
-called Tormenta20, very famous on Brazil.
-
 ![Capa T20 Edicao Jogo do Ano](./assets/t20-basico-jogo-do-ano-removebg-preview.png)  
 Capa de Tormenta 20 Edição Jogo do Ano  
 Imagem de [Jambo Editora](https://jamboeditora.com.br/produto/tormenta20-edicao-jogo-do-ano/)

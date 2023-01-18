@@ -55,20 +55,15 @@ export const ApplicationLayout = () => {
         </div>
         <NoSsr>
             <section title="Character Info" className="flex gap-4">
-                <input 
-                    type="text" 
-                    placeholder={t('nameInputPlaceholder')}
-                    className="rounded py-1 px-2 bg-transparent ring-offset-0 ring-2 ring-red-500 outline-none text-white placeholder:text-red-600 w-32"
-                    value={char.name || ''}
-                    onChange={({target}) => setChar((char) => ({ ...char, name: target.value }))}
-                />
                 <Listbox 
                     as="div"
                     className="relative"
                     value={char.race}
                     onChange={(race) => setChar((char) => ({ ...char, race }))}
                 >
-                    <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">{t('raceSelector.button', { race: t(`races.${char.race}`) })}</Listbox.Button>
+                    <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">
+                        {t('raceSelector.button', { race: t(`races.${char.race}`) })}
+                    </Listbox.Button>
                     <Listbox.Options className="flex flex-col absolute bg-red-900 mt-4 w-full max-h-[50vh] overflow-y-auto overscroll-auto rounded z-50 outline-none">
                         {raceOptions.map((race) => (
                             <Listbox.Option
