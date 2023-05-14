@@ -26,5 +26,5 @@ module.exports = {
     extend: {
     },
   },
-  plugins: [bgHero],
+  plugins: [bgHero, require('autoprefixer')],
 };
