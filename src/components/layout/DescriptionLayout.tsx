@@ -9,8 +9,6 @@ export const DescriptionLayout = () => {
     const { locale } = useRouter()
     const [text, setText] = useState('')
 
-    console.log(locale)
-
     useEffect(() => {
         fetch(`./md/description.${locale}.md`)
             .then(res => res.text())
