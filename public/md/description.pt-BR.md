@@ -35,8 +35,8 @@ para definir seus atributos, cada valor tem um custo em pontos.
 | 3 | 4 pontos | 16-17 |
 | 4 | 7 pontos | 18 |
 
-# Quem criou isso?
-Olá, meu nome é Patrick Dorneles e eu sou um jogador de RPG, software developer and aspirante à
+# Quem fez isso?
+Olá, meu nome é Patrick Dorneles e eu sou um jogador de RPG, software developer e aspirante à
 game developer. Eu amo RPG e tenho jogado em Arton desde 2016 quando eu descobri o livro de Tormenta RPG 
 , e ele era incrivel, e agora com essa nova versão eu gostei bastante do
 novo sistema de atributos,
