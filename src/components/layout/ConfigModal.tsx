@@ -22,14 +22,15 @@ export function ConfigModal() {
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="w-full max-w-sm rounded p-6 bg-red-800">
-          <Dialog.Title className="text-white text-3xl font-sans font-bold">Configurations</Dialog.Title>
-          <Dialog.Description className="text-white font-sans">Change your calculator</Dialog.Description>
+          <Dialog.Title className="text-white text-3xl font-sans font-bold">{t.raw("title")}</Dialog.Title>
+          <Dialog.Description className="text-white font-sans">{t.raw("description")}</Dialog.Description>
 
           <ul className="my-4 text-white flex flex-col gap-1">
             {
               Object.entries(config).map(([key, value]) => {
+                // Sorry for the 'any', trust me, I've tried
                 return <li key={key}>
-                  <Toggle checked={value} label={t.raw(key as keyof IntlMessages['Config'])} onChange={(e) => {
+                  <Toggle checked={value} label={t.raw(`configOptions.${key}` as any)} onChange={(e) => {
                     setConfig({
                       ...config,
                       [key]: e.target.checked

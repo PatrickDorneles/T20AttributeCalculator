@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { Fragment, useEffect } from "react"
+import { Fragment, useCallback, useEffect, useState } from "react"
 import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
 import type { ValidBaseAttribute } from "../../functions/AttributeCalculator";
 import { getAttributeCost } from "../../functions/AttributeCalculator"
@@ -17,7 +17,19 @@ export const ApplicationLayout = () => {
     const raceOptions = [...RacialBonusMap.keys()]
     const [config] = useAtom(configAtom)
 
+    const [totalPointsChange, setTotalPointsChange] = useState(char.points.total)
+
     const t = useTranslations("Main")
+
+    const changeTotalPoints = useCallback((newTotal?: number) => {
+        setChar({
+            ...getDefaultCharacter(),
+            points: {
+                total: newTotal ?? totalPointsChange,
+                left: newTotal ?? totalPointsChange
+            }
+        })
+    }, [totalPointsChange, setChar])
 
     useEffect(() => {
         if (char.race && RacialBonusMap.get(char.race)?.type === 'choice') {
@@ -49,6 +61,16 @@ export const ApplicationLayout = () => {
             points: { total: char.points.total, left: char.points.total - totalCost }
         }))
     }, [char.attrs, setChar])
+
+    useEffect(() => {
+        if (
+            !config.editablePoints &&
+            getDefaultCharacter().points.total !== char.points.total
+        ) {
+            changeTotalPoints(getDefaultCharacter().points.total)
+        }
+    }, [config, char, changeTotalPoints])
+
 
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
         <Logo className="h-24 w-24" />
@@ -90,9 +112,10 @@ export const ApplicationLayout = () => {
                 <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('resetButton')}</button>
             </section>
 
-            <label className={`text-white flex gap-2 ${!config.editablePoints && 'hidden'}`} >
+            <label className={`text-white flex gap-2 items-center ${!config.editablePoints && 'hidden'}`} >
                 {t('maxPoints')}
-                <input className="bg-red-500 focus:bg-red-500 rounded-md w-16 text-white outline-white text-center" type="number" value={char.points.total} />
+                <input className="bg-red-500 focus:bg-red-500 rounded-md w-16 text-white outline-white text-center" type="number" value={totalPointsChange} onChange={(e) => setTotalPointsChange(parseInt(e.target.value))} />
+                <button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded" onClick={() => changeTotalPoints()}>{t.raw("changePointsButton")}</button>
             </label>
             <label className="text-white flex gap-2">
                 {t('pointsLeft')}

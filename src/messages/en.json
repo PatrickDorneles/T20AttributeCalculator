@@ -1,7 +1,11 @@
 {
     "Config": {
-        "editablePoints": "Editable Points",
-        "othersPointsSection": "'Others' Calc. Section"
+        "title": "Configurations",
+        "description": "Change your calculator",
+        "configOptions": {
+            "editablePoints": "Editable Points",
+            "othersPointsSection": "'Others' Calc. Section"
+        }
     },
     "Main": {
         "subheading": "An attribute calculator for Tormenta20 - Game of The Year Edition",
@@ -10,8 +14,9 @@
         "raceSelector": {
             "button": "Race: {race}"
         },
-        "maxPoints": "Points",
+        "maxPoints": "Total Points",
         "pointsLeft": "Points Left",
+        "changePointsButton": "Change and Reset",
         "races": {
             "Other": "Other",
             "Human": "Human",
