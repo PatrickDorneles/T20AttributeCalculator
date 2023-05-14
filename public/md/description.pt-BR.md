@@ -1,6 +1,6 @@
 # O que é isso?
 
-É uma calculadora para ajudar você a determinar os atributos para personages
+É uma calculadora para ajudar você a determinar os atributos para personagens
 de um &quot;TTRPG&quot; (Table Top Role Playing Game) chamado Tormenta20, muito
 famoso no Brasil.
 
