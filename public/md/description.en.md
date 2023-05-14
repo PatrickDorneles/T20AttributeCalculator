@@ -47,5 +47,4 @@ feedback about this project, that you can find on [this GitHub repo](https://git
 
 If you would like to contact me you can reach me through these links:  
 [![LinkedIn](https://img.shields.io/badge/-Linkedin-1467C3?style=for-the-badge&logo=Linkedin&logoColor=white)](https://www.linkedin.com/public-profile/in/patrick-dorneles-922632162/)
-[![Facebook](https://img.shields.io/badge/-Facebook-1876F3?style=for-the-badge&logo=Facebook&logoColor=white)](https://www.facebook.com/people/Patrick-Dorneles/100072043064054/)
-[![Facebook](https://img.shields.io/badge/-GitHub-333333?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/PatrickDorneles)
+[![GitHub](https://img.shields.io/badge/-GitHub-333333?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/PatrickDorneles)
