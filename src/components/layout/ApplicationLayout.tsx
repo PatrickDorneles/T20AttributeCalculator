@@ -119,7 +119,7 @@ export const ApplicationLayout = () => {
             </label>
             <label className="text-white flex gap-2">
                 {t('pointsLeft')}
-                <input className="bg-red-600 rounded-md w-16 text-white outline-white text-center opacity-100" type="number" value={char.points.left} disabled />
+                <input className="bg-red-600 rounded-md w-16 text-white outline-white text-center opacity-100 disabled:text-white" type="number" value={char.points.left} disabled />
             </label>
             <div className="flex flex-col items-center gap-2 ">
                 <header className="flex text-white w-full justify-between px-1 font-bold">

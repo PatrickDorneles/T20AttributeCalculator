@@ -106,7 +106,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.base} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.base} />
 
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
                 onClick={() => subFromField('base')}
@@ -134,7 +134,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                     <ChevronUpIcon className="w-6 text-white" />
                 </button>
 
-                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.race} />
+                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.race} />
 
                 <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
                     onClick={() => subFromField('race')}
@@ -144,7 +144,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 </button>
             </div>
         ) : (
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded" disabled value={attribute.race} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded disabled:text-white" disabled value={attribute.race} />
         )}
 
         <span className={`text-lg text-white font-bold ${!config.othersPointsSection && 'hidden'}`}>+</span>
@@ -156,7 +156,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
                 <ChevronUpIcon className="w-6 text-white" />
             </button>
 
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none" disabled value={attribute.other} />
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.other} />
 
             <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
                 onClick={() => subFromField('other')}
