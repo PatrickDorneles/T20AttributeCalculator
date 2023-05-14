@@ -19,6 +19,8 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
+      'mono': ['Ubuntu Mono', 'monospace'],
+      'sans': ['Ubuntu', 'sans-serif'],
       'display': ['Hammersmith One', 'sans-serif']
     },
     extend: {

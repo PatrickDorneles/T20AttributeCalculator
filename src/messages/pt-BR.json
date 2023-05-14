@@ -1,4 +1,8 @@
 {
+    "Config": {
+        "editablePoints": "Pontos Editaveis",
+        "othersPointsSection": "Seção 'Outros' para Calc."
+    },
     "Main": {
         "subheading": "Uma calculadora de atributos para Tormenta20 - Edição Jogo do Ano",
         "nameInputPlaceholder": "Personagem",
@@ -6,7 +10,8 @@
         "raceSelector": {
             "button": "Raça: {race}"
         },
-        "pointsLeft": "Pontos Restantes: {points}",
+        "maxPoints": "Pontos",
+        "pointsLeft": "Pontos Restantes",
         "races": {
             "Other": "Outro",
             "Human": "Humano/a",

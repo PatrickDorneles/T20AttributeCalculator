@@ -9,15 +9,18 @@ import { Listbox } from '@headlessui/react'
 import { RacialBonusMap } from "../../resources/RacialBonusMap";
 import NoSsr from "../NoSsr";
 import { useTranslations } from 'next-intl'
+import type { Race } from "../../types/BookResources";
+import { configAtom } from "../../atoms/config";
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
-    const raceOptions = [ ...RacialBonusMap.keys() ]
+    const raceOptions = [...RacialBonusMap.keys()]
+    const [config] = useAtom(configAtom)
 
     const t = useTranslations("Main")
 
     useEffect(() => {
-        if(char.race && RacialBonusMap.get(char.race)?.type === 'choice') {
+        if (char.race && RacialBonusMap.get(char.race)?.type === 'choice') {
             setChar((char) => ({
                 ...char,
                 attrs: {
@@ -32,15 +35,15 @@ export const ApplicationLayout = () => {
         }
     }, [char.race, setChar])
 
-    useEffect(() => { 
-        const totalCost = 
+    useEffect(() => {
+        const totalCost =
             getAttributeCost(char.attrs.strength.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.dexterity.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.constitution.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.intelligence.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.wisdom.base as ValidBaseAttribute)
             + getAttributeCost(char.attrs.charisma.base as ValidBaseAttribute)
-            
+
         setChar((char) => ({
             ...char,
             points: { total: char.points.total, left: char.points.total - totalCost }
@@ -55,11 +58,11 @@ export const ApplicationLayout = () => {
         </div>
         <NoSsr>
             <section title="Character Info" className="flex gap-4">
-                <Listbox 
+                <Listbox
                     as="div"
                     className="relative"
                     value={char.race}
-                    onChange={(race) => setChar((char) => ({ ...char, race }))}
+                    onChange={(race: Race) => setChar((char) => ({ ...char, race }))}
                 >
                     <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">
                         {t('raceSelector.button', { race: t(`races.${char.race}`) })}
@@ -70,12 +73,12 @@ export const ApplicationLayout = () => {
                                 key={race}
                                 value={race}
                                 as={Fragment}
-                                
+
                             >
                                 {
                                     ({ active, selected }) =>
-                                        <button 
-                                            className={`text-center p-2 text-white active:brightness-150 :bg-white cursor-pointer ${ active && 'bg-red-700'} ${ selected && 'border-2 border-red-200'}`}
+                                        <button
+                                            className={`text-center p-2 text-white active:brightness-150 :bg-white cursor-pointer ${active && 'bg-red-700'} ${selected && 'border-2 border-red-200'}`}
                                         >
                                             {t(`races.${race}`)}
                                         </button>
@@ -86,17 +89,21 @@ export const ApplicationLayout = () => {
                 </Listbox>
                 <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('resetButton')}</button>
             </section>
-            
-            <div>
-                <span className="text-white">{t('pointsLeft', { points: char.points.left })}</span>
-                
-            </div>
+
+            <label className={`text-white flex gap-2 ${!config.editablePoints && 'hidden'}`} >
+                {t('maxPoints')}
+                <input className="bg-red-500 focus:bg-red-500 rounded-md w-16 text-white outline-white text-center" type="number" value={char.points.total} />
+            </label>
+            <label className="text-white flex gap-2">
+                {t('pointsLeft')}
+                <input className="bg-red-600 rounded-md w-16 text-white outline-white text-center" type="number" value={char.points.left} disabled />
+            </label>
             <div className="flex flex-col items-center gap-2 ">
                 <header className="flex text-white w-full justify-between px-1 font-bold">
                     <span>{t("calculator.heading.name")}</span>
                     <span>{t("calculator.heading.base")}</span>
                     <span>{t("calculator.heading.racial")}</span>
-                    <span>{t("calculator.heading.other")}</span>
+                    <span className={config.othersPointsSection ? '' : 'hidden'}>{t("calculator.heading.other")}</span>
                     <span>{t("calculator.heading.total")}</span>
                 </header>
                 <AttributeGroup name="strength" />
