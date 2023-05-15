@@ -36,7 +36,6 @@ section::-webkit-scrollbar-thumb {
     input[type='number'] {
         -webkit-appearance: none;
         margin: 0;
-        appearance: textfield;
         -moz-appearance: textfield !important;
     }
 }
