@@ -183,5 +183,16 @@ export const RacialBonusMap = new Map<Race, RacialBonus>([
             wisdom: 0,
             charisma: 0,
         }
+    }],
+    [Race.Golem, {
+        type: "strict",
+        attrs: {
+            strength: 2,
+            dexterity: 0,
+            constitution: 1,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: -1
+        }
     }]
 ])

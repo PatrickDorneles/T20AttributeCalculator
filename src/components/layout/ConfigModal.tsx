@@ -1,7 +1,7 @@
 import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 import { Dialog } from "@headlessui/react"
 import { useState } from "react";
-import { configAtom, DEFAULT_CONFIG } from "../../atoms/config";
+import { configAtom } from "../../atoms/config";
 import { Toggle } from "../flowbite/Toggle";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
@@ -13,7 +13,7 @@ export function ConfigModal() {
   const t = useTranslations("Config")
 
   return <>
-    <button className="absolute rounded-full right-8 top-4" onClick={() => setOpen(true)}>
+    <button className="absolute rounded-full right-4 top-4" onClick={() => setOpen(true)}>
       <Cog8ToothIcon className="w-8 text-white transition hover:rotate-180 active:opacity-50" />
     </button>
 

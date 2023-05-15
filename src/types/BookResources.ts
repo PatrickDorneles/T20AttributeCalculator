@@ -8,6 +8,7 @@ export enum Race {
     Lefou = 'Lefou',
     Minotaur = 'Minotaur',
     Qareen = 'Qareen',
+    Golem = 'Golem',
     Hynne = 'Hynne',
     Kliren = 'Kliren',
     Medusa = 'Medusa',
@@ -36,7 +37,7 @@ export type RacialBonus = {
     maxPerAttribute: number
 } | {
     type: 'mixed'
-    
+
     pointsToChoose: number
     maxPerAttribute: number
 
