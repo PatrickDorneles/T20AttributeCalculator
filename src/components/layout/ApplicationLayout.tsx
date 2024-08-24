@@ -11,15 +11,17 @@ import NoSsr from "../NoSsr";
 import { useTranslations } from 'next-intl'
 import type { Race } from "../../types/BookResources";
 import { configAtom } from "../../atoms/config";
+import { SortRaces } from "../../functions/SortRaces";
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
     const raceOptions = [...RacialBonusMap.keys()]
     const [config] = useAtom(configAtom)
-
+    
     const [totalPointsChange, setTotalPointsChange] = useState(char.points.total)
-
+    
     const t = useTranslations("Main")
+    const orderedRaceOptions = SortRaces(raceOptions, t as (key: unknown) => string)
 
     const changeTotalPoints = useCallback((newTotal?: number) => {
         setChar({
@@ -90,7 +92,7 @@ export const ApplicationLayout = () => {
                         {t('raceSelector.button', { race: t(`races.${char.race}`) })}
                     </Listbox.Button>
                     <Listbox.Options className="flex flex-col absolute bg-red-900 mt-4 w-full max-h-[50vh] overflow-y-auto overscroll-auto rounded z-50 outline-none">
-                        {raceOptions.map((race) => (
+                        {orderedRaceOptions.map((race) => (
                             <Listbox.Option
                                 key={race}
                                 value={race}
