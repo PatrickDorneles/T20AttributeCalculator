@@ -12,6 +12,11 @@ export function ConfigModal() {
 
   const t = useTranslations("Config")
 
+  const getConfigLabel = (key: string): 'configOptions.editablePoints' | 'configOptions.othersPointsSection' => {
+    if(key === 'editablePoints') return "configOptions.editablePoints"
+    return "configOptions.othersPointsSection"
+  }
+
   return <>
     <button className="absolute rounded-full right-4 top-4" onClick={() => setOpen(true)}>
       <Cog8ToothIcon className="w-8 text-white transition hover:rotate-180 active:opacity-50" />
@@ -28,9 +33,8 @@ export function ConfigModal() {
           <ul className="my-4 text-white flex flex-col gap-1">
             {
               Object.entries(config).map(([key, value]) => {
-                // Sorry for the 'any', trust me, I've tried
                 return <li key={key}>
-                  <Toggle checked={value} label={t.raw(`configOptions.${key}` as any)} onChange={(e) => {
+                  <Toggle checked={value} label={t.raw(getConfigLabel(key))} onChange={(e) => {
                     setConfig({
                       ...config,
                       [key]: e.target.checked
