@@ -47,3 +47,7 @@ dar para esse projeto, que se encontra [nesse repo do Github](https://github.com
 Se você gostaria de me contatar, pode entrar em contato por esses links:  
 [![LinkedIn](https://img.shields.io/badge/-Linkedin-1467C3?style=for-the-badge&logo=Linkedin&logoColor=white)](https://www.linkedin.com/public-profile/in/patrick-dorneles-922632162/)
 [![Github](https://img.shields.io/badge/-GitHub-333333?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/PatrickDorneles)
+
+Também gostaria de agradecer ao contribuidor que me ajudou com esse projeto:
+**João Vítor**
+[![GitHub](https://img.shields.io/badge/-GitHub-333333?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/jvdprates) 
