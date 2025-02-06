@@ -351,7 +351,7 @@ export const RacialBonusMap = new Map<Race, RacialBonus>([
     [Race.Minauro, {
         type: "mixed",
         maxPerAttribute: 1,
-        pointsToChoose: 2,
+        pointsToChoose: 3,
         attrs: {
             strength: 1,
             dexterity: 0,
