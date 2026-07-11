@@ -21,6 +21,7 @@
         "importJson": "Import JSON",
         "exportImage": "Save as Image",
         "manageCharacters": "Manage Characters",
+        "configSettings": "Settings",
         "newCharacter": "New Character",
         "deleteCharacter": "Delete",
         "saveCharacter": "Save Character",
