@@ -16,3 +16,4 @@ T20AC (Tormenta 20 Attribute Calculator) is a web application designed for the B
 - **Usability**: Provide a clear and intuitive interface for character attribute management.
 - **Internationalization**: Support multiple languages (English and Portuguese) to reach a broader audience.
 - **Type Safety**: Leverage TypeScript and Zod to minimize runtime errors and ensure data integrity.
+- **Modularity**: Componentize code whenever styles require it, or when component logic can be separated without hard tradeoffs.

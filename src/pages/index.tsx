@@ -7,7 +7,6 @@ import { useAtom } from "jotai";
 import { activeCharacter, characters, getDefaultCharacter } from "../atoms/characters";
 import { useEffect } from "react";
 import packageInfo from '../../package.json'
-import { useTranslations } from 'next-intl'
 
 const Home: NextPage = () => {
   const [version, setVersion] = useAtom(versionAtom)

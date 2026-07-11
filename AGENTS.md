@@ -30,3 +30,5 @@ All development must follow the **Feature Workflow** defined in [docs/feature-wo
 - Ensure all new logic is type-safe and validated using Zod where appropriate.
 - Run `npm run lint` and `npm run build` before considering a task complete.
 - Avoid stopping work in the middle of a task; ensure a conceptual unit of work is complete before finishing.
+- Componentize code whenever styles require it, or when component logic can be separated without hard tradeoffs.
+- When stuck or unable to progress, retry the last sequence of steps from the ground up, taking into account what has been accomplished and where previous attempts failed, to find a new path to completion.
