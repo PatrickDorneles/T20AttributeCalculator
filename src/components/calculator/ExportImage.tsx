@@ -45,16 +45,17 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
             <AttributeGroup name="charisma" hideControls />
           </div>
           {showQRCode && (
-            <div className="absolute bottom-0 right-0 flex flex-col items-end gap-1">
-              <p className="text-xs opacity-70 mr-1">Scan to load character</p>
-              <div className="bg-black p-1 rounded">
-                <QRCodeSVG value={url} size={80} bgColor="transparent" fgColor="#ffffff" />
+            <div className="flex flex-col items-center gap-2 mt-4">
+              <p className="text-sm opacity-70">Scan to load character</p>
+              <div className="bg-black p-1">
+                <QRCodeSVG value={url} size={120} bgColor="transparent" fgColor="#ffffff" />
               </div>
             </div>
           )}
         </div>
       </div>
     )
+
 
 
 }
