@@ -3,6 +3,8 @@ import { useTranslations } from 'next-intl'
 import { AttributeGroup } from "../AttributeSection"
 import type { Character } from "../../types/Character";
 import { Logo } from "../svg/Logo"
+import { QRCodeSVG } from 'qrcode.react'
+import LZString from 'lz-string'
 
 interface ExportImageProps {
   char: Character;
@@ -12,8 +14,13 @@ interface ExportImageProps {
 
 export const ExportImage = ({ char, configOthersPointsSection, captureRef }: ExportImageProps) => {
   const t = useTranslations("Main")
+ 
+  const charString = JSON.stringify(char)
+  const compressed = LZString.compressToEncodedURIComponent(charString)
+  const url = `${typeof window !== 'undefined' ? window.location.origin : ''}?char=${compressed}`
+ 
+  return (
 
-    return (
       <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
         <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white">
           <Logo className="h-24 w-24" />
@@ -36,6 +43,10 @@ export const ExportImage = ({ char, configOthersPointsSection, captureRef }: Exp
             <AttributeGroup name="intelligence" hideControls />
             <AttributeGroup name="wisdom" hideControls />
             <AttributeGroup name="charisma" hideControls />
+          </div>
+          <div className="flex flex-col items-center gap-2 mt-4">
+            <QRCodeSVG value={url} size={128} bgColor="transparent" fgColor="#ffffff" />
+            <p className="text-sm opacity-70">Scan to load character</p>
           </div>
         </div>
       </div>
