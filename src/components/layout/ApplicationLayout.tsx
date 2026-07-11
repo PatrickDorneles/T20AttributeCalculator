@@ -16,7 +16,8 @@ import { toPng } from 'html-to-image';
 import { 
     ArrowDownTrayIcon, 
     ArrowUpTrayIcon, 
-    PhotoIcon 
+    PhotoIcon,
+    Cog8ToothIcon
 } from '@heroicons/react/24/solid';
 import { ConfigModal } from "./ConfigModal";
 
@@ -26,6 +27,7 @@ export const ApplicationLayout = () => {
     const [config] = useAtom(configAtom)
     
     const [totalPointsChange, setTotalPointsChange] = useState(char.points.total)
+    const [isConfigOpen, setIsConfigOpen] = useState(false)
     
     const t = useTranslations("Main")
     const orderedRaceOptions = SortRaces(raceOptions, t as (key: unknown) => string)
@@ -125,20 +127,39 @@ export const ApplicationLayout = () => {
     }, [config, char, changeTotalPoints])
     
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
-        <ConfigModal>
+        <div className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2">
+            <button onClick={() => setIsConfigOpen(true)} className="text-white transition hover:rotate-180 active:opacity-50">
+                <Cog8ToothIcon className="w-8" />
+            </button>
             <div className="flex flex-col gap-2 items-center">
-                <button onClick={exportToJson} className="text-white hover:text-red-200 transition-colors" title={t('exportJson')}>
-                    <ArrowUpTrayIcon className="w-6 h-6" />
-                </button>
-                <label className="text-white hover:text-red-200 transition-colors cursor-pointer" title={t('importJson')}>
-                    <ArrowDownTrayIcon className="w-6 h-6" />
-                    <input type="file" accept=".json" className="hidden" onChange={importFromJson} />
-                </label>
-                <button onClick={exportToImage} className="text-white hover:text-red-200 transition-colors" title={t('exportImage')}>
-                    <PhotoIcon className="w-6 h-6" />
-                </button>
+                <div className="group relative flex items-center justify-center">
+                    <button onClick={exportToJson} className="text-white hover:text-red-200 transition-colors">
+                        <ArrowUpTrayIcon className="w-6 h-6" />
+                    </button>
+                    <span className="absolute right-full mr-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        {t('exportJson')}
+                    </span>
+                </div>
+                <div className="group relative flex items-center justify-center">
+                    <label className="text-white hover:text-red-200 transition-colors cursor-pointer">
+                        <ArrowDownTrayIcon className="w-6 h-6" />
+                        <input type="file" accept=".json" className="hidden" onChange={importFromJson} />
+                    </label>
+                    <span className="absolute right-full mr-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        {t('importJson')}
+                    </span>
+                </div>
+                <div className="group relative flex items-center justify-center">
+                    <button onClick={exportToImage} className="text-white hover:text-red-200 transition-colors">
+                        <PhotoIcon className="w-6 h-6" />
+                    </button>
+                    <span className="absolute right-full mr-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        {t('exportImage')}
+                    </span>
+                </div>
             </div>
-        </ConfigModal>
+        </div>
+        <ConfigModal open={isConfigOpen} onClose={() => setIsConfigOpen(false)} />
         <Logo className="h-24 w-24" />
         <div className="flex flex-col items-center justify-center px-4">
             <h1 className="text-white text-4xl font-bold font-display text-center">T20AC</h1>
