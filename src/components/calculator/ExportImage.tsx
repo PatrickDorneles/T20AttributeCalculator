@@ -48,7 +48,7 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
             <div className="flex flex-col items-center gap-2 mt-4">
               <p className="text-sm opacity-70">{t('calculator.exportImage.scanToLoad')}</p>
               <div className="bg-black p-1 relative flex items-center justify-center">
-                <QRCodeSVG value={url} size={160} bgColor="transparent" fgColor="#ffffff" />
+                <QRCodeSVG value={url} size={160} bgColor="transparent" fgColor="#ffffff" level="H" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-black p-1 rounded-sm">
                     <Logo className="h-12 w-12" />
