@@ -25,7 +25,7 @@ const IconFromName: {
     charisma: CharismaIcon
 }
 
-export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name }) => {
+export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?: boolean }> = ({ name, hideControls = false }) => {
     const [char, setChar] = useAtom(activeCharacter)
     const config = useAtomValue(configAtom)
 
@@ -91,82 +91,95 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs'] }> = ({ name })
             <Icon className="w-10 h-10" />
             <span className="text-white text-lg font-bold w-10 uppercase text-center">{t(name)}</span>
         </div>
-
+ 
         <div title="Base Field" className="flex flex-col items-center justify-center h-min" >
-            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
-                onClick={() => addToField('base')}
-                disabled={
-                    attribute.base >= 4 ||
-                    char.points.left
-                    - getAttributeCost(attribute.base + 1 as ValidBaseAttribute)
-                    + getAttributeCost(attribute.base as ValidBaseAttribute)
-                    < 0
-                }
-            >
-                <ChevronUpIcon className="w-6 text-white" />
-            </button>
-
-            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.base} />
-
-            <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
-                onClick={() => subFromField('base')}
-                disabled={attribute.base <= -1}
-            >
-                <ChevronDownIcon className="w-6 text-white" />
-            </button>
-        </div>
-
-        <span className="text-lg text-white font-bold">+</span>
-
-        {shouldShowOptionsOnRacialBonusInput ? (
-            <div title="Race Field" className="flex flex-col items-center justify-center h-min" >
+            {!hideControls && (
                 <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
-                    onClick={() => addToField('race')}
+                    onClick={() => addToField('base')}
                     disabled={
-                        raceBonus?.type !== 'free' &&
-                        raceBonus?.type !== 'strict' && (
-                            attribute.race === raceBonus?.maxPerAttribute
-                            || Object.values(char.attrs).reduce((
-                                (previous, attribute) => previous + Math.max(attribute.race, 0)), 0
-                            ) >= (raceBonus?.pointsToChoose || 0)
-                        )}
+                        attribute.base >= 4 ||
+                        char.points.left
+                        - getAttributeCost(attribute.base + 1 as ValidBaseAttribute)
+                        + getAttributeCost(attribute.base as ValidBaseAttribute)
+                        < 0
+                    }
                 >
                     <ChevronUpIcon className="w-6 text-white" />
                 </button>
-
-                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.race} />
-
+            )}
+ 
+            <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.base} />
+ 
+            {!hideControls && (
                 <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
-                    onClick={() => subFromField('race')}
-                    disabled={raceBonus?.type !== 'free' && attribute.race <= 0}
+                    onClick={() => subFromField('base')}
+                    disabled={attribute.base <= -1}
                 >
                     <ChevronDownIcon className="w-6 text-white" />
                 </button>
+            )}
+        </div>
+ 
+        <span className="text-lg text-white font-bold">+</span>
+ 
+        {shouldShowOptionsOnRacialBonusInput ? (
+            <div title="Race Field" className="flex flex-col items-center justify-center h-min" >
+                {!hideControls && (
+                    <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
+                        onClick={() => addToField('race')}
+                        disabled={
+                            raceBonus?.type !== 'free' &&
+                            raceBonus?.type !== 'strict' && (
+                                attribute.race === raceBonus?.maxPerAttribute
+                                || Object.values(char.attrs).reduce((
+                                    (previous, attribute) => previous + Math.max(attribute.race, 0)), 0
+                                ) >= (raceBonus?.pointsToChoose || 0)
+                            )}
+                    >
+                        <ChevronUpIcon className="w-6 text-white" />
+                    </button>
+                )}
+ 
+                <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.race} />
+ 
+                {!hideControls && (
+                    <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
+                        onClick={() => subFromField('race')}
+                        disabled={raceBonus?.type !== 'free' && attribute.race <= 0}
+                    >
+                        <ChevronDownIcon className="w-6 text-white" />
+                    </button>
+                )}
             </div>
         ) : (
             <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded disabled:text-white" disabled value={attribute.race} />
         )}
-
+ 
         <span className={`text-lg text-white font-bold ${!config.othersPointsSection && 'hidden'}`}>+</span>
-
+ 
         <div title="Other Field" className={`flex flex-col items-center justify-center h-min ${!config.othersPointsSection && 'hidden'}`}>
-            <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
-                onClick={() => addToField('other')}
-            >
-                <ChevronUpIcon className="w-6 text-white" />
-            </button>
-
+            {!hideControls && (
+                <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
+                    onClick={() => addToField('other')}
+                >
+                    <ChevronUpIcon className="w-6 text-white" />
+                </button>
+            )}
+ 
             <input type="text" className="h-full w-12 py-1 text-center bg-red-600 text-white text-lg opacity-100 rounded-none disabled:text-white" disabled value={attribute.other} />
-
-            <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
-                onClick={() => subFromField('other')}
-            >
-                <ChevronDownIcon className="w-6 text-white" />
-            </button>
+ 
+            {!hideControls && (
+                <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 flex items-center justify-center"
+                    onClick={() => subFromField('other')}
+                >
+                    <ChevronDownIcon className="w-6 text-white" />
+                </button>
+            )}
         </div>
-
+ 
         <span className="text-lg text-white font-bold">=</span>
-
+ 
         <input type="text" className="w-12 py-1 text-center bg-red-600 text-white text-lg rounded opacity-100" disabled value={totalSum} />
     </div>)
+
 }
