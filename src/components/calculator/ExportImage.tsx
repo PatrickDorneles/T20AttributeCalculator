@@ -26,8 +26,8 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
           <Logo className="h-24 w-24" />
           <div className="flex flex-col items-center gap-2 mb-4">
             <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
-            <p className="text-xl">Race: {t(`races.${char.race}`)}</p>
-            <p className="text-lg">Points: {char.points.left} / {char.points.total}</p>
+            <p className="text-xl">{t('calculator.exportImage.raceLabel')}: {t(`races.${char.race}`)}</p>
+            <p className="text-lg">{t('calculator.exportImage.pointsLabel')}: {char.points.left} / {char.points.total}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <header className="flex text-white w-full justify-between px-1 font-bold">
@@ -46,7 +46,7 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
           </div>
           {showQRCode && (
             <div className="flex flex-col items-center gap-2 mt-4">
-              <p className="text-sm opacity-70">SCAN TO LOAD</p>
+              <p className="text-sm opacity-70">{t('calculator.exportImage.scanToLoad')}</p>
               <div className="bg-black p-1">
                 <QRCodeSVG value={url} size={160} bgColor="transparent" fgColor="#ffffff" />
               </div>

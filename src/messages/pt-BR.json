@@ -93,6 +93,11 @@
                 "intelligence": "INT",
                 "wisdom": "SAB",
                 "charisma": "CAR"
+            },
+            "exportImage": {
+                "raceLabel": "Raça",
+                "pointsLabel": "Pontos",
+                "scanToLoad": "ESCANEAR PARA CARREGAR"
             }
         }
     }
