@@ -4,7 +4,8 @@
         "description": "Change your calculator",
         "configOptions": {
             "editablePoints": "Editable Points",
-            "othersPointsSection": "'Others' Calc. Section"
+            "othersPointsSection": "'Others' Calc. Section",
+            "showQRCode": "Show QR Code in Image"
         }
     },
     "Main": {
@@ -92,6 +93,11 @@
                 "intelligence": "INT",
                 "wisdom": "WIS",
                 "charisma": "CHA"
+            },
+            "exportImage": {
+                "raceLabel": "Race",
+                "pointsLabel": "Points",
+                "scanToLoad": "SCAN TO LOAD"
             }
         }
     }

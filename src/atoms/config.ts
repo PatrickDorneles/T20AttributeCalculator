@@ -3,7 +3,8 @@ import type { Config } from "../types/Config";
 
 export const DEFAULT_CONFIG: Config = {
   editablePoints: false,
-  othersPointsSection: false
+  othersPointsSection: false,
+  showQRCode: true
 }
 
 export const configAtom = atomWithStorage<Config>('config', DEFAULT_CONFIG)

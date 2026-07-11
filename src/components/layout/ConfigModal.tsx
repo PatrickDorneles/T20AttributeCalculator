@@ -1,5 +1,5 @@
 import { Dialog } from "@headlessui/react"
-import { configAtom } from "../../atoms/config";
+import { configAtom, DEFAULT_CONFIG } from "../../atoms/config";
 import { Toggle } from "../flowbite/Toggle";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
@@ -14,9 +14,10 @@ export function ConfigModal({ open, onClose }: ConfigModalProps) {
   
   const t = useTranslations("Config")
 
-  const getConfigLabel = (key: string): 'configOptions.editablePoints' | 'configOptions.othersPointsSection' => {
+  const getConfigLabel = (key: string): 'configOptions.editablePoints' | 'configOptions.othersPointsSection' | 'configOptions.showQRCode' => {
     if(key === 'editablePoints') return "configOptions.editablePoints"
-    return "configOptions.othersPointsSection"
+    if(key === 'othersPointsSection') return "configOptions.othersPointsSection"
+    return "configOptions.showQRCode"
   }
 
   return (
@@ -31,7 +32,8 @@ export function ConfigModal({ open, onClose }: ConfigModalProps) {
 
           <ul className="my-4 text-white flex flex-col gap-1">
             {
-              Object.entries(config).map(([key, value]) => {
+              Object.entries(DEFAULT_CONFIG).map(([key, defaultValue]) => {
+                const value = config[key as keyof typeof DEFAULT_CONFIG] ?? defaultValue;
                 return <li key={key}>
                   <Toggle checked={value} label={t.raw(getConfigLabel(key))} onChange={(e) => {
                     setConfig({

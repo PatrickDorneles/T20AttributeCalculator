@@ -178,6 +178,7 @@ export const ApplicationLayout = () => {
       <ExportImage 
         char={char} 
         configOthersPointsSection={config.othersPointsSection} 
+        showQRCode={config.showQRCode}
         captureRef={captureRef} 
       />
     </NoSsr>
