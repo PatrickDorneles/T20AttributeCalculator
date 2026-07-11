@@ -19,10 +19,9 @@ export const ExportImage = ({ char, configOthersPointsSection, captureRef }: Exp
   const compressed = LZString.compressToEncodedURIComponent(charString)
   const url = `${typeof window !== 'undefined' ? window.location.origin : ''}?char=${compressed}`
  
-  return (
-
+    return (
       <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-        <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white">
+        <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white relative">
           <Logo className="h-24 w-24" />
           <div className="flex flex-col items-center gap-2 mb-4">
             <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
@@ -44,12 +43,13 @@ export const ExportImage = ({ char, configOthersPointsSection, captureRef }: Exp
             <AttributeGroup name="wisdom" hideControls />
             <AttributeGroup name="charisma" hideControls />
           </div>
-          <div className="flex flex-col items-center gap-2 mt-4">
-            <QRCodeSVG value={url} size={128} bgColor="transparent" fgColor="#ffffff" />
-            <p className="text-sm opacity-70">Scan to load character</p>
+          <div className="absolute bottom-0 right-0 flex flex-col items-end gap-1">
+            <p className="text-xs opacity-70 mr-1">Scan to load character</p>
+            <QRCodeSVG value={url} size={80} bgColor="transparent" fgColor="#ffffff" />
           </div>
         </div>
       </div>
     )
+
 
 }
