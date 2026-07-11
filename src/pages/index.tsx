@@ -7,7 +7,7 @@ import { useAtom } from "jotai";
 import { activeCharacter, characters, getDefaultCharacter } from "../atoms/characters";
 import { useEffect } from "react";
 import packageInfo from '../../package.json'
-import { ConfigModal } from "../components/layout/ConfigModal";
+import { useTranslations } from 'next-intl'
 
 const Home: NextPage = () => {
   const [version, setVersion] = useAtom(versionAtom)
@@ -30,7 +30,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <ConfigModal />
         <ApplicationLayout />
         <DescriptionLayout />
         <var dangerouslySetInnerHTML={{ __html: "<!-- Made by Patrick Dorneles (https://github.com/PatrickDorneles) -->" }} />

@@ -13,6 +13,12 @@ import type { Race } from "../../types/BookResources";
 import { configAtom } from "../../atoms/config";
 import { SortRaces } from "../../functions/SortRaces";
 import { toPng } from 'html-to-image';
+import { 
+    ArrowDownTrayIcon, 
+    ArrowUpTrayIcon, 
+    PhotoIcon 
+} from '@heroicons/react/24/solid';
+import { ConfigModal } from "./ConfigModal";
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
@@ -65,7 +71,10 @@ export const ApplicationLayout = () => {
     const exportToImage = async () => {
         if (!captureRef.current) return;
         try {
-            const dataUrl = await toPng(captureRef.current, { cacheBust: true });
+            const dataUrl = await toPng(captureRef.current, { 
+                cacheBust: true,
+                backgroundColor: '#4b0e0e'
+            });
             const link = document.createElement('a');
             link.download = `character_${char.name || 'export'}.png`;
             link.href = dataUrl;
@@ -116,6 +125,20 @@ export const ApplicationLayout = () => {
     }, [config, char, changeTotalPoints])
     
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
+        <ConfigModal>
+            <div className="flex flex-col gap-2 items-center">
+                <button onClick={exportToJson} className="text-white hover:text-red-200 transition-colors" title={t('exportJson')}>
+                    <ArrowUpTrayIcon className="w-6 h-6" />
+                </button>
+                <label className="text-white hover:text-red-200 transition-colors cursor-pointer" title={t('importJson')}>
+                    <ArrowDownTrayIcon className="w-6 h-6" />
+                    <input type="file" accept=".json" className="hidden" onChange={importFromJson} />
+                </label>
+                <button onClick={exportToImage} className="text-white hover:text-red-200 transition-colors" title={t('exportImage')}>
+                    <PhotoIcon className="w-6 h-6" />
+                </button>
+            </div>
+        </ConfigModal>
         <Logo className="h-24 w-24" />
         <div className="flex flex-col items-center justify-center px-4">
             <h1 className="text-white text-4xl font-bold font-display text-center">T20AC</h1>
@@ -153,14 +176,6 @@ export const ApplicationLayout = () => {
                 </Listbox>
                 <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('resetButton')}</button>
             </section>
-            <section className="flex gap-2">
-                <button onClick={exportToJson} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('exportJson')}</button>
-                <label className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded cursor-pointer">
-                    {t('importJson')}
-                    <input type="file" accept=".json" className="hidden" onChange={importFromJson} />
-                </label>
-                <button onClick={exportToImage} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('exportImage')}</button>
-            </section>
             <label className={`text-white flex gap-2 items-center ${!config.editablePoints && 'hidden'}`} >
                 {t('maxPoints')}
                 <input className="bg-red-500 focus:bg-red-500 rounded-md w-16 text-white outline-white text-center" type="number" value={totalPointsChange} onChange={(e) => setTotalPointsChange(parseInt(e.target.value))} />
@@ -170,7 +185,7 @@ export const ApplicationLayout = () => {
                 {t('pointsLeft')}
                 <input className="bg-red-600 rounded-md w-16 text-white outline-white text-center opacity-100 disabled:text-white" type="number" value={char.points.left} disabled />
             </label>
-            <div ref={captureRef} className="flex flex-col items-center gap-2 ">
+            <div className="flex flex-col items-center gap-2 ">
                 <header className="flex text-white w-full justify-between px-1 font-bold">
                     <span>{t("calculator.heading.name")}</span>
                     <span>{t("calculator.heading.base")}</span>
@@ -186,5 +201,30 @@ export const ApplicationLayout = () => {
                 <AttributeGroup name="charisma" />
             </div>
         </NoSsr>
+        
+        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+            <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white">
+                <div className="flex flex-col items-center gap-2 mb-4">
+                    <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
+                    <p className="text-xl">Race: {t(`races.${char.race}`)}</p>
+                    <p className="text-lg">Points: {char.points.left} / {char.points.total}</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                    <header className="flex text-white w-full justify-between px-1 font-bold">
+                        <span>{t("calculator.heading.name")}</span>
+                        <span>{t("calculator.heading.base")}</span>
+                        <span>{t("calculator.heading.racial")}</span>
+                        <span className={config.othersPointsSection ? '' : 'hidden'}>{t("calculator.heading.other")}</span>
+                        <span>{t("calculator.heading.total")}</span>
+                    </header>
+                    <AttributeGroup name="strength" />
+                    <AttributeGroup name="dexterity" />
+                    <AttributeGroup name="constitution" />
+                    <AttributeGroup name="intelligence" />
+                    <AttributeGroup name="wisdom" />
+                    <AttributeGroup name="charisma" />
+                </div>
+            </div>
+        </div>
     </div>
 }

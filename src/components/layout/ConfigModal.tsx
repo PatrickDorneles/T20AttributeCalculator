@@ -6,9 +6,10 @@ import { Toggle } from "../flowbite/Toggle";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
 
-export function ConfigModal() {
+export function ConfigModal({ children }: { children?: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const [config, setConfig] = useAtom(configAtom)
+
 
   const t = useTranslations("Config")
 
@@ -18,9 +19,11 @@ export function ConfigModal() {
   }
 
   return <>
-    <button className="absolute rounded-full right-4 top-4" onClick={() => setOpen(true)}>
+    <button className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2" onClick={() => setOpen(true)}>
       <Cog8ToothIcon className="w-8 text-white transition hover:rotate-180 active:opacity-50" />
+      {children}
     </button>
+
 
     <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50" >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
