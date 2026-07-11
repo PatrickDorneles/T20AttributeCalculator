@@ -4,7 +4,8 @@
         "description": "Change your calculator",
         "configOptions": {
             "editablePoints": "Editable Points",
-            "othersPointsSection": "'Others' Calc. Section"
+            "othersPointsSection": "'Others' Calc. Section",
+            "showQRCode": "Show QR Code in Image"
         }
     },
     "Main": {

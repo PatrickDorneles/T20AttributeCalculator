@@ -14,9 +14,10 @@ export function ConfigModal({ open, onClose }: ConfigModalProps) {
   
   const t = useTranslations("Config")
 
-  const getConfigLabel = (key: string): 'configOptions.editablePoints' | 'configOptions.othersPointsSection' => {
+  const getConfigLabel = (key: string): 'configOptions.editablePoints' | 'configOptions.othersPointsSection' | 'configOptions.showQRCode' => {
     if(key === 'editablePoints') return "configOptions.editablePoints"
-    return "configOptions.othersPointsSection"
+    if(key === 'othersPointsSection') return "configOptions.othersPointsSection"
+    return "configOptions.showQRCode"
   }
 
   return (

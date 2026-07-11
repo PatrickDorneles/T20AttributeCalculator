@@ -4,7 +4,8 @@
         "description": "Mude sua calculadora",
         "configOptions": {
             "editablePoints": "Pontos Editaveis",
-            "othersPointsSection": "Seção 'Outros' para Calc."
+            "othersPointsSection": "Seção 'Outros' para Calc.",
+            "showQRCode": "Mostrar QR Code na Imagem"
         }
     },
     "Main": {

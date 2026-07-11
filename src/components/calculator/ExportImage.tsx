@@ -9,10 +9,11 @@ import LZString from 'lz-string'
 interface ExportImageProps {
   char: Character;
   configOthersPointsSection: boolean;
+  showQRCode: boolean;
   captureRef: React.RefObject<HTMLDivElement>;
 }
 
-export const ExportImage = ({ char, configOthersPointsSection, captureRef }: ExportImageProps) => {
+export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captureRef }: ExportImageProps) => {
   const t = useTranslations("Main")
  
   const charString = JSON.stringify(char)
@@ -43,12 +44,14 @@ export const ExportImage = ({ char, configOthersPointsSection, captureRef }: Exp
             <AttributeGroup name="wisdom" hideControls />
             <AttributeGroup name="charisma" hideControls />
           </div>
-          <div className="absolute bottom-0 right-0 flex flex-col items-end gap-1">
-            <p className="text-xs opacity-70 mr-1">Scan to load character</p>
-            <div className="bg-black p-1 rounded">
-              <QRCodeSVG value={url} size={80} bgColor="transparent" fgColor="#ffffff" />
+          {showQRCode && (
+            <div className="absolute bottom-0 right-0 flex flex-col items-end gap-1">
+              <p className="text-xs opacity-70 mr-1">Scan to load character</p>
+              <div className="bg-black p-1 rounded">
+                <QRCodeSVG value={url} size={80} bgColor="transparent" fgColor="#ffffff" />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     )
