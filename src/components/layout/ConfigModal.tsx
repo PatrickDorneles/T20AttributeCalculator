@@ -19,10 +19,13 @@ export function ConfigModal({ children }: { children?: React.ReactNode }) {
   }
 
   return <>
-    <button className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2" onClick={() => setOpen(true)}>
-      <Cog8ToothIcon className="w-8 text-white transition hover:rotate-180 active:opacity-50" />
+    <div className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2">
+      <button onClick={() => setOpen(true)}>
+        <Cog8ToothIcon className="w-8 text-white transition hover:rotate-180 active:opacity-50" />
+      </button>
       {children}
-    </button>
+    </div>
+
 
 
     <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50" >
