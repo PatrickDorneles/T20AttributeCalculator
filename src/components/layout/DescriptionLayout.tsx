@@ -23,7 +23,7 @@ export const DescriptionLayout = () => {
                 'td': ({ children }) => <td className='border-white border-solid border-2 py-1 px-2' >{children}</td>,
                 'th': ({ children }) => <th className='border-white border-solid border-2 py-1 px-2' >{children}</th>,
                 'a': ({ children, href }) => <a className='text-blue-500 cursor-pointer' href={href} >{children}</a>,
-                'img': (props) => <img className='inline' {...props} />,
+                'img': (props) => <img className='inline' alt={props.alt || 'Image'} {...props} />, // eslint-disable-line @next/next/no-img-element
             }}
             className="flex flex-col gap-4"
             remarkPlugins={[remarkGfm]} >

@@ -28,10 +28,6 @@ const Home: NextPage = () => {
         <title>T20 Atribute Calculator</title>
         <meta name="description" content="Your T20 attribute calculator" />
         <link rel="icon" href="/favicon.ico" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Ubuntu&family=Ubuntu+Mono&display=swap" rel="stylesheet" />
       </Head>
       <main >
         <ConfigModal />

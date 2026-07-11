@@ -20,8 +20,6 @@
     "react-dom": "18.2.0",
     "react-markdown": "8.0.4",
     "remark-gfm": "3.0.1",
-    "tree-sitter": "0.20.1",
-    "tree-sitter-cli": "^0.20.7",
     "zod": "^3.18.0"
   },
   "devDependencies": {
