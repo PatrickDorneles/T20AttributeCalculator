@@ -20,6 +20,11 @@
         "exportJson": "Export JSON",
         "importJson": "Import JSON",
         "exportImage": "Save as Image",
+        "manageCharacters": "Manage Characters",
+        "newCharacter": "New Character",
+        "deleteCharacter": "Delete",
+        "saveCharacter": "Save Character",
+        "characterNamePlaceholder": "Character Name",
         "races": {
             "Other": "Other",
             "Human": "Human",

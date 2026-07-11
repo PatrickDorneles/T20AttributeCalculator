@@ -1,6 +1,6 @@
 import { useAtom } from "jotai"
 import { Fragment, useCallback, useEffect, useState, useRef } from "react"
-import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
+import { activeCharacter, characters, getDefaultCharacter } from "../../atoms/characters"
 import type { ValidBaseAttribute } from "../../functions/AttributeCalculator";
 import { getAttributeCost } from "../../functions/AttributeCalculator"
 import { AttributeGroup } from "../AttributeSection"
@@ -17,17 +17,21 @@ import {
     ArrowDownTrayIcon, 
     ArrowUpTrayIcon, 
     PhotoIcon,
-    Cog8ToothIcon
+    Cog8ToothIcon,
+    UsersIcon
 } from '@heroicons/react/24/solid';
 import { ConfigModal } from "./ConfigModal";
+import { CharacterManager } from "./CharacterManager";
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
+    const [chars, setChars] = useAtom(characters)
     const raceOptions = [...RacialBonusMap.keys()]
     const [config] = useAtom(configAtom)
     
     const [totalPointsChange, setTotalPointsChange] = useState(char.points.total)
     const [isConfigOpen, setIsConfigOpen] = useState(false)
+    const [isCharManagerOpen, setIsCharManagerOpen] = useState(false)
     
     const t = useTranslations("Main")
     const orderedRaceOptions = SortRaces(raceOptions, t as (key: unknown) => string)
@@ -63,6 +67,15 @@ export const ApplicationLayout = () => {
             try {
                 const json = JSON.parse(event.target?.result as string);
                 setChar(json);
+                
+                // Add to character list if it doesn't exist
+                setChars(prev => {
+                    const exists = prev.find(c => c.id === json.id);
+                    if (exists) {
+                        return prev.map(c => c.id === json.id ? json : c);
+                    }
+                    return [...prev, json];
+                });
             } catch (err) {
                 alert("Invalid JSON file");
             }
@@ -125,8 +138,27 @@ export const ApplicationLayout = () => {
             changeTotalPoints(getDefaultCharacter().points.total)
         }
     }, [config, char, changeTotalPoints])
+
+    useEffect(() => {
+        // Auto-save active character to the characters list
+        setChars(prev => {
+            const index = prev.findIndex(c => c.id === char.id);
+            if (index !== -1) {
+                const next = [...prev];
+                next[index] = char;
+                return next;
+            } else {
+                return [...prev, char];
+            }
+        });
+    }, [char, setChars])
     
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
+        <div className="absolute rounded-full left-4 top-4 flex flex-col items-center gap-2">
+            <button onClick={() => setIsCharManagerOpen(true)} className="text-white transition hover:rotate-180 active:opacity-50" title={t('manageCharacters')}>
+                <UsersIcon className="w-8" />
+            </button>
+        </div>
         <div className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2">
             <button onClick={() => setIsConfigOpen(true)} className="text-white transition hover:rotate-180 active:opacity-50">
                 <Cog8ToothIcon className="w-8" />
@@ -160,6 +192,7 @@ export const ApplicationLayout = () => {
             </div>
         </div>
         <ConfigModal open={isConfigOpen} onClose={() => setIsConfigOpen(false)} />
+        <CharacterManager open={isCharManagerOpen} onClose={() => setIsCharManagerOpen(false)} />
         <Logo className="h-24 w-24" />
         <div className="flex flex-col items-center justify-center px-4">
             <h1 className="text-white text-4xl font-bold font-display text-center">T20AC</h1>
