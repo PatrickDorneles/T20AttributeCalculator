@@ -155,8 +155,8 @@ export const ApplicationLayout = () => {
     
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
         <div className="absolute rounded-full left-4 top-4 flex flex-col items-center gap-2">
-            <button onClick={() => setIsCharManagerOpen(true)} className="text-white transition hover:rotate-180 active:opacity-50" title={t('manageCharacters')}>
-                <UsersIcon className="w-8" />
+            <button onClick={() => setIsCharManagerOpen(true)} className="text-white active:opacity-50" title={t('manageCharacters')}>
+                <UsersIcon className="w-10" />
             </button>
         </div>
         <div className="absolute rounded-full right-4 top-4 flex flex-col items-center gap-2">
@@ -254,31 +254,31 @@ export const ApplicationLayout = () => {
                 <AttributeGroup name="wisdom" />
                 <AttributeGroup name="charisma" />
             </div>
-        </NoSsr>
-        
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-            <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white">
-                <div className="flex flex-col items-center gap-2 mb-4">
-                    <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
-                    <p className="text-xl">Race: {t(`races.${char.race}`)}</p>
-                    <p className="text-lg">Points: {char.points.left} / {char.points.total}</p>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                    <header className="flex text-white w-full justify-between px-1 font-bold">
-                        <span>{t("calculator.heading.name")}</span>
-                        <span>{t("calculator.heading.base")}</span>
-                        <span>{t("calculator.heading.racial")}</span>
-                        <span className={config.othersPointsSection ? '' : 'hidden'}>{t("calculator.heading.other")}</span>
-                        <span>{t("calculator.heading.total")}</span>
-                    </header>
-                    <AttributeGroup name="strength" />
-                    <AttributeGroup name="dexterity" />
-                    <AttributeGroup name="constitution" />
-                    <AttributeGroup name="intelligence" />
-                    <AttributeGroup name="wisdom" />
-                    <AttributeGroup name="charisma" />
+            
+            <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+                <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white">
+                    <div className="flex flex-col items-center gap-2 mb-4">
+                        <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
+                        <p className="text-xl">Race: {t(`races.${char.race}`)}</p>
+                        <p className="text-lg">Points: {char.points.left} / {char.points.total}</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                        <header className="flex text-white w-full justify-between px-1 font-bold">
+                            <span>{t("calculator.heading.name")}</span>
+                            <span>{t("calculator.heading.base")}</span>
+                            <span>{t("calculator.heading.racial")}</span>
+                            <span className={config.othersPointsSection ? '' : 'hidden'}>{t("calculator.heading.other")}</span>
+                            <span>{t("calculator.heading.total")}</span>
+                        </header>
+                        <AttributeGroup name="strength" />
+                        <AttributeGroup name="dexterity" />
+                        <AttributeGroup name="constitution" />
+                        <AttributeGroup name="intelligence" />
+                        <AttributeGroup name="wisdom" />
+                        <AttributeGroup name="charisma" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </NoSsr>
     </div>
 }
