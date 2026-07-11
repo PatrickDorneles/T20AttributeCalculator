@@ -17,6 +17,9 @@
         "maxPoints": "Total Points",
         "pointsLeft": "Points Left",
         "changePointsButton": "Change and Reset",
+        "exportJson": "Export JSON",
+        "importJson": "Import JSON",
+        "exportImage": "Save as Image",
         "races": {
             "Other": "Other",
             "Human": "Human",

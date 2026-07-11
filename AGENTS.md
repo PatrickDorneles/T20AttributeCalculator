@@ -29,3 +29,4 @@ All development must follow the **Feature Workflow** defined in [docs/feature-wo
 - Maintain internationalization support using `next-intl`.
 - Ensure all new logic is type-safe and validated using Zod where appropriate.
 - Run `npm run lint` and `npm run build` before considering a task complete.
+- Avoid stopping work in the middle of a task; ensure a conceptual unit of work is complete before finishing.

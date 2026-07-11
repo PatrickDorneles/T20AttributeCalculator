@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { Fragment, useCallback, useEffect, useState } from "react"
+import { Fragment, useCallback, useEffect, useState, useRef } from "react"
 import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
 import type { ValidBaseAttribute } from "../../functions/AttributeCalculator";
 import { getAttributeCost } from "../../functions/AttributeCalculator"
@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl'
 import type { Race } from "../../types/BookResources";
 import { configAtom } from "../../atoms/config";
 import { SortRaces } from "../../functions/SortRaces";
+import { toPng } from 'html-to-image';
 
 export const ApplicationLayout = () => {
     const [char, setChar] = useAtom(activeCharacter)
@@ -23,6 +24,8 @@ export const ApplicationLayout = () => {
     const t = useTranslations("Main")
     const orderedRaceOptions = SortRaces(raceOptions, t as (key: unknown) => string)
 
+    const captureRef = useRef<HTMLDivElement>(null);
+    
     const changeTotalPoints = useCallback((newTotal?: number) => {
         setChar({
             ...getDefaultCharacter(),
@@ -33,19 +36,58 @@ export const ApplicationLayout = () => {
         })
     }, [totalPointsChange, setChar])
 
+    const exportToJson = () => {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(char, null, 2));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", `character_${char.name || 'export'}.json`);
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
+    const importFromJson = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const json = JSON.parse(event.target?.result as string);
+                setChar(json);
+            } catch (err) {
+                alert("Invalid JSON file");
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    const exportToImage = async () => {
+        if (!captureRef.current) return;
+        try {
+            const dataUrl = await toPng(captureRef.current, { cacheBust: true });
+            const link = document.createElement('a');
+            link.download = `character_${char.name || 'export'}.png`;
+            link.href = dataUrl;
+            link.click();
+        } catch (err) {
+            console.error("Export to image failed", err);
+        }
+    }
+
     useEffect(() => {
         if (char.race && RacialBonusMap.get(char.race)?.type === 'choice') {
             setChar((char) => ({
-                ...char,
-                attrs: {
-                    strength: { ...char.attrs.strength, race: 0 },
-                    dexterity: { ...char.attrs.dexterity, race: 0 },
-                    constitution: { ...char.attrs.constitution, race: 0 },
-                    intelligence: { ...char.attrs.intelligence, race: 0 },
-                    wisdom: { ...char.attrs.wisdom, race: 0 },
-                    charisma: { ...char.attrs.charisma, race: 0 },
-                }
-            }))
+            ...char,
+            attrs: {
+                strength: { ...char.attrs.strength, race: 0 },
+                dexterity: { ...char.attrs.dexterity, race: 0 },
+                constitution: { ...char.attrs.constitution, race: 0 },
+                intelligence: { ...char.attrs.intelligence, race: 0 },
+                wisdom: { ...char.attrs.wisdom, race: 0 },
+                charisma: { ...char.attrs.charisma, race: 0 },
+            }
+        }))
         }
     }, [char.race, setChar])
 
@@ -72,8 +114,7 @@ export const ApplicationLayout = () => {
             changeTotalPoints(getDefaultCharacter().points.total)
         }
     }, [config, char, changeTotalPoints])
-
-
+    
     return <div className="min-h-screen w-full flex flex-col justify-center items-center gap-6 bg-[#4b0e0e] bg-hero-topography py-16">
         <Logo className="h-24 w-24" />
         <div className="flex flex-col items-center justify-center px-4">
@@ -97,7 +138,6 @@ export const ApplicationLayout = () => {
                                 key={race}
                                 value={race}
                                 as={Fragment}
-
                             >
                                 {
                                     ({ active, selected }) =>
@@ -106,14 +146,21 @@ export const ApplicationLayout = () => {
                                         >
                                             {t(`races.${race}`)}
                                         </button>
-                                }
-                            </Listbox.Option>
-                        ))}
+                                    }
+                                </Listbox.Option>
+                            ))}
                     </Listbox.Options>
                 </Listbox>
                 <button onClick={() => setChar(getDefaultCharacter())} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('resetButton')}</button>
             </section>
-
+            <section className="flex gap-2">
+                <button onClick={exportToJson} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('exportJson')}</button>
+                <label className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded cursor-pointer">
+                    {t('importJson')}
+                    <input type="file" accept=".json" className="hidden" onChange={importFromJson} />
+                </label>
+                <button onClick={exportToImage} className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded">{t('exportImage')}</button>
+            </section>
             <label className={`text-white flex gap-2 items-center ${!config.editablePoints && 'hidden'}`} >
                 {t('maxPoints')}
                 <input className="bg-red-500 focus:bg-red-500 rounded-md w-16 text-white outline-white text-center" type="number" value={totalPointsChange} onChange={(e) => setTotalPointsChange(parseInt(e.target.value))} />
@@ -123,7 +170,7 @@ export const ApplicationLayout = () => {
                 {t('pointsLeft')}
                 <input className="bg-red-600 rounded-md w-16 text-white outline-white text-center opacity-100 disabled:text-white" type="number" value={char.points.left} disabled />
             </label>
-            <div className="flex flex-col items-center gap-2 ">
+            <div ref={captureRef} className="flex flex-col items-center gap-2 ">
                 <header className="flex text-white w-full justify-between px-1 font-bold">
                     <span>{t("calculator.heading.name")}</span>
                     <span>{t("calculator.heading.base")}</span>
@@ -140,6 +187,4 @@ export const ApplicationLayout = () => {
             </div>
         </NoSsr>
     </div>
-
 }
-
