@@ -1,6 +1,15 @@
 # Changelog
-
+ 
+## [1.1.0] - 2026-07-11
+ 
+### Added
+- **QR Code Export**: Added optional QR codes to exported images that allow importing character configuration directly via URL.
+- **Enhanced QR Code**: Improved scannability with High error correction, custom sizing, and branding (logo overlay).
+- **Configurable Export**: Added a setting to toggle the QR code visibility in the final image.
+- **Image Layout Refinement**: Adjusted export image padding and layout to better accommodate the QR code and branding.
+ 
 ## [1.0.0] - 2026-07-11
+
 
 ### Added
 - **Attribute Calculator**: Core system for calculating character attributes based on Tormenta 20 rules.
