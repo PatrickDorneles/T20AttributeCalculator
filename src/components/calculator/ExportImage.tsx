@@ -46,9 +46,9 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
           </div>
           {showQRCode && (
             <div className="flex flex-col items-center gap-2 mt-4">
-              <p className="text-sm opacity-70">Scan to load character</p>
+              <p className="text-sm opacity-70">SCAN TO LOAD</p>
               <div className="bg-black p-1">
-                <QRCodeSVG value={url} size={120} bgColor="transparent" fgColor="#ffffff" />
+                <QRCodeSVG value={url} size={160} bgColor="transparent" fgColor="#ffffff" />
               </div>
             </div>
           )}
