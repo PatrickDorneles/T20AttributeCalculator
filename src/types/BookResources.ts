@@ -3,6 +3,7 @@ export type Race = string;
 export type RaceData = {
   id: Race;
   source: string;
+  icon: string;
   bonus: RacialBonus;
 }
 

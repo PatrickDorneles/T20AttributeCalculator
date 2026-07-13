@@ -17,7 +17,13 @@
             "title": "Select Race",
             "searchPlaceholder": "Search by name or attribute (e.g. STR)",
             "otherRaceDesc": "Use this for custom races",
-            "customRaceLabel": "Custom Race Name"
+            "customRaceLabel": "Custom Race Name",
+            "gain": "You gain",
+            "lose": "but lose",
+            "noBonus": "No fixed bonuses",
+            "distributePoints": "Distribute {points} points at the maximum of {max} for each attribute",
+            "except": "except for",
+            "racialBonusesHeader": "{race}'s Racial Bonuses"
         },
         "maxPoints": "Total Points",
         "pointsLeft": "Points Left",
@@ -47,7 +53,7 @@
             "Medusa": "Medusa",
             "Osteon": "Osteon",
             "Merfolk": "Merfolk",
-            "Silfide": "Silfide",
+            "Siflide": "Silfide",
             "Sulfure": "Sulfure",
             "Aggelus": "Aggelus",
             "Trog": "Trog",
