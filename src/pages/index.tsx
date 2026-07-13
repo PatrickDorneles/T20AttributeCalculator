@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const [version, setVersion] = useAtom(versionAtom)
   const [, setChar] = useAtom(activeCharacter)
   const [, setChars] = useAtom(characters)
- 
+
   useEffect(() => {
     if (version !== packageInfo.version) {
       setChar(getDefaultCharacter())
@@ -23,10 +23,10 @@ const Home: NextPage = () => {
       setVersion(packageInfo.version || '0.0.1')
     }
   }, [version, setChar, setChars, setVersion])
- 
+
   useEffect(() => {
     if (!router.isReady) return
- 
+
     const charData = router.query.char as string
     if (charData) {
       try {
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
       }
     }
   }, [router.isReady, router.query, setChar])
- 
+
   return (
 
     <>

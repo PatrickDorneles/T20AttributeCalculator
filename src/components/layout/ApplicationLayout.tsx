@@ -85,7 +85,7 @@ export const ApplicationLayout = () => {
         backgroundColor: '#4b0e0e'
       });
       const link = document.createElement('a');
-      link.download = `character_${char.name || 'export'}.png`;
+      link.download = `${t('calculator.exportImage.fileNamePrefix')} ${char.name || t('calculator.exportImage.charDefaultName')}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {

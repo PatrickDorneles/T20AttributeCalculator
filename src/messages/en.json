@@ -97,7 +97,9 @@
             "exportImage": {
                 "raceLabel": "Race",
                 "pointsLabel": "Points",
-                "scanToLoad": "SCAN TO LOAD"
+                "scanToLoad": "SCAN TO LOAD",
+                "fileNamePrefix": "Attributes",
+                "charDefaultName": "Character"
             }
         }
     }
