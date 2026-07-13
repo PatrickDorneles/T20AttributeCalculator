@@ -13,7 +13,11 @@
         "nameInputPlaceholder": "Character",
         "resetButton": "Reset",
         "raceSelector": {
-            "button": "Race: {race}"
+            "button": "Race: {race}",
+            "title": "Select Race",
+            "searchPlaceholder": "Search by name or attribute (e.g. STR)",
+            "otherRaceDesc": "Use this for custom races",
+            "customRaceLabel": "Custom Race Name"
         },
         "maxPoints": "Total Points",
         "pointsLeft": "Points Left",

@@ -5,6 +5,7 @@ export type Character = {
     id: string
     name: string
     race: Race
+    customRaceName?: string
     points: { total: number, left: number }
 
     attrs: {

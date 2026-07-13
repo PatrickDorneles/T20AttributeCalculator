@@ -24,12 +24,14 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
     <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
       <div ref={captureRef} className="p-12 bg-[#4b0e0e] bg-hero-topography flex flex-col items-center gap-6 text-white relative">
         {!showQRCode && <Logo className="h-24 w-24" />}
-        <div className="flex flex-col items-center gap-2 mb-4">
-          <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
-            <p className="text-xl">{t('calculator.exportImage.raceLabel')}: {t(`races.${char.race}` as any)}</p>
+          <div className="flex flex-col items-center gap-2 mb-4">
+            <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
+            <p className="text-xl">
+              {t('calculator.exportImage.raceLabel')}: {char.race === 'Other' ? (char.customRaceName || t('races.Other' as any)) : t(`races.${char.race}` as any)}
+            </p>
+            <p className="text-lg">{t('calculator.exportImage.pointsLabel')}: {char.points.left} / {char.points.total}</p>
+          </div>
 
-          <p className="text-lg">{t('calculator.exportImage.pointsLabel')}: {char.points.left} / {char.points.total}</p>
-        </div>
         <div className="flex flex-col items-center gap-2">
           <header className="flex text-white w-full justify-between px-1 font-bold">
             <span>{t("calculator.heading.name")}</span>

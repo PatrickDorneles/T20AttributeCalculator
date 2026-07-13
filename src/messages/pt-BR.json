@@ -12,9 +12,14 @@
     "subheading": "Uma calculadora de atributos para Tormenta20 - Edição Jogo do Ano",
     "nameInputPlaceholder": "Personagem",
     "resetButton": "Resetar",
-    "raceSelector": {
-      "button": "Raça: {race}"
-    },
+        "raceSelector": {
+            "button": "Raça: {race}",
+            "title": "Selecionar Raça",
+            "searchPlaceholder": "Busque por nome ou atributo (ex: FOR)",
+            "otherRaceDesc": "Use para raças customizadas",
+            "customRaceLabel": "Nome da Raça Customizada"
+        },
+
     "maxPoints": "Pontos Totais",
     "pointsLeft": "Pontos Restantes",
     "changePointsButton": "Mudar e Resetar",
