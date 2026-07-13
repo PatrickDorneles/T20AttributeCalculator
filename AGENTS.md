@@ -9,7 +9,7 @@ T20AC is a character attribute calculator for the Tormenta 20 TTRPG. For more de
 All development MUST strictly follow the **Feature Workflow**. Skipping any step is prohibited unless explicitly authorized by the user.
 
 ### Mandatory Sequence:
-1. **Research & Plan**: Analyze the requirement and provide a detailed implementation plan.
+1. **Research & Plan**: Analyze the requirement and provide a detailed implementation plan using the **Planning Template**.
 2. **Approval**: Wait for the user to approve the plan before writing any code.
 3. **Implementation**: Execute the approved plan.
 4. **Verification**: Run `npm run lint` and `npm run build` to ensure no regressions.
@@ -19,6 +19,22 @@ All development MUST strictly follow the **Feature Workflow**. Skipping any step
 **Branching Rule**: 
 - Create a feature branch for all non-trivial tasks.
 - Small, localized changes (e.g., fixing a typo, updating a single label) may be done on `main` if the user agrees, but MUST still follow steps 1-6.
+
+### Planning Template
+Every "Research & Plan" step must include:
+- **Goal**: A concise description of what needs to be achieved.
+- **Analysis**: Exploration of the current state and why the change is necessary.
+- **Proposed Changes**: A specific list of files to be modified and the logic to be implemented.
+- **Verification Plan**: How the change will be verified (commands, specific test cases).
+
+### Guardrails
+- **NEVER** commit or push changes directly to `main` without explicit user approval after a review.
+- **ALWAYS** run `npm run build` after any modification to types or core logic.
+- **ALWAYS** ensure new strings are added to both `en.json` and `pt-BR.json`.
+- **NEVER** stop work in the middle of a conceptual unit of work.
+
+### Discovery-to-Doc Loop
+If during the course of a task you discover an architectural pattern, a project quirk, or a hidden dependency that is not documented in `docs/context.md` or `AGENTS.md`, you MUST proactively suggest an update to these documents to help future agents.
 
 ## Documentation Structure
 - `/docs/context.md`: General project overview and technology stack.
