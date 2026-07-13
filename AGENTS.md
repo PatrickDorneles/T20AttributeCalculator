@@ -32,6 +32,7 @@ Every "Research & Plan" step must include:
 - **ALWAYS** run `npm run build` after any modification to types or core logic.
 - **ALWAYS** ensure new strings are added to both `en.json` and `pt-BR.json`.
 - **NEVER** stop work in the middle of a conceptual unit of work.
+- **NEVER** use the `any` type. The project must remain fully type-safe. Use generics, union types, or unknown if the type is truly dynamic.
 
 ### Discovery-to-Doc Loop
 If during the course of a task you discover an architectural pattern, a project quirk, or a hidden dependency that is not documented in `docs/context.md` or `AGENTS.md`, you MUST proactively suggest an update to these documents to help future agents.

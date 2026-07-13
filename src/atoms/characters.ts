@@ -17,7 +17,7 @@ export const getDefaultCharacter = () => ({
         wisdom: { base: 0, other: 0, race: 0 },
         charisma: { base: 0, other: 0, race: 0 },
     },
-    race: Race.Other
+    race: "Other"
 })
 
 export const activeCharacter = atomWithStorage<Character>("active", getDefaultCharacter())

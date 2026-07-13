@@ -26,7 +26,8 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
         {!showQRCode && <Logo className="h-24 w-24" />}
         <div className="flex flex-col items-center gap-2 mb-4">
           <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
-          <p className="text-xl">{t('calculator.exportImage.raceLabel')}: {t(`races.${char.race}`)}</p>
+            <p className="text-xl">{t('calculator.exportImage.raceLabel')}: {t(`races.${char.race}` as any)}</p>
+
           <p className="text-lg">{t('calculator.exportImage.pointsLabel')}: {char.points.left} / {char.points.total}</p>
         </div>
         <div className="flex flex-col items-center gap-2">

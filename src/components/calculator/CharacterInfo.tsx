@@ -23,7 +23,7 @@ export const CharacterInfo = () => {
                 onChange={(race: Race) => setChar((char) => ({ ...char, race }))}
             >
                 <Listbox.Button className="text-white bg-red-600 hover:bg-red-900 active:opacity-50 px-2 py-1 rounded w-36">
-                    {t('raceSelector.button', { race: t(`races.${char.race}`) })}
+                    {t('raceSelector.button', { race: t(`races.${char.race}` as any) })}
                 </Listbox.Button>
                 <Listbox.Options className="flex flex-col absolute bg-red-900 mt-4 w-full max-h-[50vh] overflow-y-auto overscroll-auto rounded z-50 outline-none">
                     {orderedRaceOptions.map((race) => (
@@ -34,11 +34,12 @@ export const CharacterInfo = () => {
                         >
                             {
                                 ({ active, selected }) =>
-                                    <button
-                                        className={`text-center p-2 text-white active:brightness-150 :bg-white cursor-pointer ${active && 'bg-red-700'} ${selected && 'border-2 border-red-200'}`}
-                                    >
-                                        {t(`races.${race}`)}
-                                    </button>
+                                     <button
+                                         className={`text-center p-2 text-white active:brightness-150 :bg-white cursor-pointer ${active && 'bg-red-700'} ${selected && 'border-2 border-red-200'}`}
+                                     >
+                                         {t(`races.${race}` as any)}
+                                     </button>
+
                                 }
                         </Listbox.Option>
                     ))}

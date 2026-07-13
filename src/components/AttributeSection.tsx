@@ -32,7 +32,7 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?:
     const Icon = IconFromName[name]
     const attribute = char.attrs[name]
 
-    const raceBonus = char.race && RacialBonusMap.get(char.race)
+    const raceBonus = char.race ? RacialBonusMap.get(char.race) : undefined
 
     const shouldShowOptionsOnRacialBonusInput =
         !raceBonus
