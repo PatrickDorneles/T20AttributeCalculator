@@ -1,10 +1,10 @@
 # Feature Workflow
-
+ 
 To ensure quality and consistency, all new features should follow this workflow:
-
+ 
 1. **Checkout to feature branch**: Create a new branch for the feature (except for minor changes/fixes).
 2. **Research**: Understand the requirements, explore the codebase, and identify affected areas.
-3. **Plan**: Design the implementation and document the approach.
+3. **Plan**: Design the implementation using the **Planning Template** (defined in `AGENTS.md`) and document the approach.
 4. **Ask for approval**: Present the plan and a summary of the proposed changes to the reviewer/owner for approval.
 5. **Implement**: Write the code according to the approved plan.
 6. **Typecheck and Build**: Run type-checking and build commands to ensure no breaking changes.
@@ -13,3 +13,4 @@ To ensure quality and consistency, all new features should follow this workflow:
 9. **Ask for review and approval**: Submit the changes for review, including a summary of what has been implemented.
 10. **Finalize**: If approved, commit and push the changes. Otherwise, return to the Implementation step.
 11. **Merge**: Ask for merge or continue with other implementations.
+

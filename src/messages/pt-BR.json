@@ -97,7 +97,9 @@
       "exportImage": {
         "raceLabel": "Raça",
         "pointsLabel": "Pontos",
-        "scanToLoad": "ESCANEIE PARA CARREGAR"
+        "scanToLoad": "ESCANEAR PARA CARREGAR",
+        "fileNamePrefix": "Atributos",
+        "charDefaultName": "Personagem"
       }
     }
   }
