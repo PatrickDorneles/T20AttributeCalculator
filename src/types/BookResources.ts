@@ -27,6 +27,7 @@ export type RacialBonus = {
 
   pointsToChoose: number
   maxPerAttribute: number
+  exceptions: string[]
 
   attrs: {
     strength: number

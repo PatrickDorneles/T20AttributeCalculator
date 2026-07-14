@@ -34,11 +34,12 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?:
 
   const raceBonus = char.race ? RacialBonusMap.get(char.race) : undefined
 
-  const shouldShowOptionsOnRacialBonusInput =
-    !raceBonus
-    || raceBonus.type === "choice"
-    || (raceBonus.type === 'mixed' && raceBonus.attrs[name] === 0)
-    || raceBonus.type === "free"
+    const shouldShowOptionsOnRacialBonusInput =
+        !raceBonus
+        || raceBonus.type === "choice"
+        || (raceBonus.type === 'mixed' && !raceBonus.exceptions?.includes(name))
+        || raceBonus.type === "free"
+
 
   const totalRacialPoints = Object.values(char.attrs).reduce(
     (previous, attribute) => previous + Math.max(attribute.race, 0),
@@ -136,13 +137,13 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?:
         {!hideControls && (
           <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
             onClick={() => addToField('race')}
-            disabled={
-              raceBonus?.type !== 'free' &&
-              raceBonus?.type !== 'strict' && (
-                attribute.race === raceBonus?.maxPerAttribute
-                || chosenRacialPoints >= (raceBonus?.pointsToChoose || 0)
+             disabled={
+               !!(raceBonus && 
+               (raceBonus.type === 'choice' || raceBonus.type === 'mixed') && 
+               (attribute.race >= raceBonus.maxPerAttribute || chosenRacialPoints >= raceBonus.pointsToChoose))
+             }
 
-              )}
+
           >
             <ChevronUpIcon className="w-6 text-white" />
           </button>

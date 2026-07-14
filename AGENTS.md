@@ -9,16 +9,18 @@ T20AC is a character attribute calculator for the Tormenta 20 TTRPG. For more de
 All development MUST strictly follow the **Feature Workflow**. Skipping any step is prohibited unless explicitly authorized by the user.
 
 ### Mandatory Sequence:
-1. **Research & Plan**: Analyze the requirement and provide a detailed implementation plan using the **Planning Template**.
-2. **Approval**: Wait for the user to approve the plan before writing any code.
-3. **Implementation**: Execute the approved plan.
-4. **Verification**: Run `npm run lint` and `npm run build` to ensure no regressions.
-5. **Review**: Present the changes to the user and wait for their review/approval.
-6. **Finalize**: Commit and push only after final approval.
+1. **Branching**: Create a feature branch for the task (unless authorized for `main`).
+2. **Research & Plan**: Analyze the requirement and provide a detailed implementation plan using the **Planning Template**.
+3. **Approval**: Wait for the user to approve the plan before writing any code.
+4. **Implementation**: Execute the approved plan.
+5. **Verification**: Run `npm run lint` and `npm run build` to ensure no regressions.
+6. **Review**: Present the changes to the user and wait for their review/approval.
+7. **Finalize**: Commit and push only after final approval.
 
 **Branching Rule**: 
 - Create a feature branch for all non-trivial tasks.
-- Small, localized changes (e.g., fixing a typo, updating a single label) may be done on `main` if the user agrees, but MUST still follow steps 1-6.
+- Feature branches should be based on `main` or `v2` depending on the target release, as specified by the user.
+- Small, localized changes (e.g., fixing a typo, updating a single label) may be done on the base branch if the user agrees, but MUST still follow the workflow.
 
 ### Planning Template
 Every "Research & Plan" step must include:
