@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
-import React, { ReactNode } from 'react'
-import { RacialBonus } from "../types/BookResources"
+import React, { type ReactNode } from 'react'
+import type { RacialBonus } from "../types/BookResources"
 import { useTranslations } from 'next-intl'
 
 type AttributeKey = 'strength' | 'dexterity' | 'constitution' | 'intelligence' | 'wisdom' | 'charisma'

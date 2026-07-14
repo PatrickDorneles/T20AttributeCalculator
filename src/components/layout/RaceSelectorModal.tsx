@@ -7,6 +7,7 @@ import { RacialBonusMap } from "../../resources/RacialBonusMap"
 import racesData from "../../resources/races.json"
 import type { RacialBonus } from "../../types/BookResources"
 import { useFormatRaceBonus } from "../../functions/formatRaceBonus"
+import { RaceOption } from './RaceOption'
 
 interface RaceSelectorModalProps {
   open: boolean;
@@ -27,11 +28,12 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
     const groups: Record<string, string[]> = {}
 
     racesData?.forEach(race => {
-      if (race.id === 'Other') return
+      if (!race || race.id === 'Other') return
       const source = race.source
       if (!groups[source]) groups[source] = []
       groups[source]!.push(race.id)
     })
+
 
     return groups
   }, [])
@@ -40,12 +42,18 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
     const raceName = t(`races.${raceId}` as any).toLowerCase()
     const bonus = RacialBonusMap.get(raceId)
 
+
+
     const getBonusText = (b: RacialBonus | undefined) => {
       if (!b || b.type === 'free') return t('raceSelector.noBonus')
       const a = (b.type === 'strict' || b.type === 'mixed') ? b.attrs : {}
       const e = Object.entries(a) as [AttributeKey, number][]
-      const p = e.filter(([, v]) => v > 0).map(([at, v]) => `+${v} ${t(`calculator.attributeNames.${at}` as any)}`)
-      const n = e.filter(([, v]) => v < 0).map(([at, v]) => `${v} ${t(`calculator.attributeNames.${at}` as any)}`)
+      const p = e.filter(([, v]) => v > 0).map(([attr, val]) => {
+        return `+${val} ${t(`calculator.attributeNames.${attr}` as any)}`
+      })
+      const n = e.filter(([, v]) => v < 0).map(([attr, val]) => {
+        return `${val} ${t(`calculator.attributeNames.${attr}` as any)}`
+      })
       if (b.type === 'strict') {
         let txt = ""
         if (p.length > 0) txt += `${t('raceSelector.gain')} ${p.join(', ')}`
@@ -55,7 +63,9 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
       if (b.type === 'choice' || b.type === 'mixed') {
         const d = t('raceSelector.distributePoints', { points: b.pointsToChoose, max: b.maxPerAttribute })
         if (b.type === 'mixed') {
-          const ex = e.filter(([_, v]) => v !== 0).map(([at, v]) => `${t(`calculator.attributeNames.${at}` as any)} (${v > 0 ? `+${v}` : v})`)
+          const ex = e.filter(([, v]) => v !== 0).map(([attr, val]) => {
+            return `${t(`calculator.attributeNames.${attr}` as any)} (${val > 0 ? `+${val}` : val})`
+          })
           if (ex.length > 0) return `${d}, ${t('raceSelector.except')} ${ex.join(', ')}`
         }
         return d
@@ -120,34 +130,26 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {filteredRaces.map(raceId => {
                       const isSelected = char.race === raceId
+                      const race = racesData.find(r => r.id === raceId)
 
                       return (
-                        <div key={raceId} className="relative">
-                          <button
-                            onMouseEnter={(e) => handleMouseEnter(e, raceId)}
-                            onMouseLeave={handleMouseLeave}
-                            onClick={() => {
-                              setChar({ ...char, race: raceId })
-                              onClose()
-                            }}
-                            className={`w-full flex items-center gap-3 p-3 rounded-md transition-all border-2 ${isSelected
-                              ? 'bg-red-700 border-red-200 shadow-inner'
-                              : 'bg-red-800 border-transparent hover:bg-red-700'
-                              }`}
-                          >
-                            <span className="text-xl">
-                              {racesData.find(r => r.id === raceId)?.icon || '👤'}
-                            </span>
-                            <div className="flex flex-col items-start">
-                              <span className="font-bold">{t(`races.${raceId}` as any)}</span>
-                              {raceId === 'Other' && (
-                                <span className="text-[10px] opacity-60 italic">{t('raceSelector.otherRaceDesc')}</span>
-                              )}
-                            </div>
-                          </button>
-                        </div>
+                        <RaceOption 
+                          key={raceId}
+                          raceId={raceId}
+                          isSelected={isSelected}
+                          onSelect={() => {
+                            setChar({ ...char, race: raceId })
+                            onClose()
+                          }}
+                          onMouseEnter={(e) => handleMouseEnter(e, raceId)}
+                          onMouseLeave={handleMouseLeave}
+                          icon={race?.icon || '👤'}
+                          label={t(`races.${raceId}` as any)}
+                          description={raceId === 'Other' ? t('raceSelector.otherRaceDesc') : undefined}
+                        />
                       )
                     })}
+
                   </div>
                 </div>
               )
@@ -156,34 +158,19 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
             {filterRace('Other') && (
               <div className="mt-6 pt-6 border-t border-red-700">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {(function() {
-                    const raceId = 'Other'
-                    const isSelected = char.race === raceId
-                    return (
-                      <div className="relative">
-                        <button
-                          onMouseEnter={(e) => handleMouseEnter(e, raceId)}
-                          onMouseLeave={handleMouseLeave}
-                          onClick={() => {
-                            setChar({ ...char, race: raceId })
-                            onClose()
-                          }}
-                          className={`w-full flex items-center gap-3 p-3 rounded-md transition-all border-2 ${isSelected
-                            ? 'bg-red-700 border-red-200 shadow-inner'
-                            : 'bg-red-800 border-transparent hover:bg-red-700'
-                            }`}
-                        >
-                          <span className="text-xl">
-                            {racesData.find(r => r.id === raceId)?.icon || '❓'}
-                          </span>
-                          <div className="flex flex-col items-start">
-                            <span className="font-bold">{t(`races.${raceId}` as any)}</span>
-                            <span className="text-[10px] opacity-60 italic">{t('raceSelector.otherRaceDesc')}</span>
-                          </div>
-                        </button>
-                      </div>
-                    )
-                  })()}
+                  <RaceOption 
+                    raceId="Other"
+                    isSelected={char.race === 'Other'}
+                    onSelect={() => {
+                      setChar({ ...char, race: 'Other' })
+                      onClose()
+                    }}
+                    onMouseEnter={(e) => handleMouseEnter(e, 'Other')}
+                    onMouseLeave={handleMouseLeave}
+                    icon={racesData.find(r => r.id === 'Other')?.icon || '❓'}
+                    label={t('races.Other' as any)}
+                    description={t('raceSelector.otherRaceDesc')}
+                  />
                 </div>
               </div>
             )}

@@ -53,3 +53,4 @@ If during the course of a task you discover an architectural pattern, a project 
 - Avoid stopping work in the middle of a task; ensure a conceptual unit of work is complete before finishing.
 - Componentize code whenever styles require it, or when component logic can be separated without hard tradeoffs.
 - When stuck or unable to progress, retry the last sequence of steps from the ground up, taking into account what has been accomplished and where previous attempts failed, to find a new path to completion.
+- When calling the edit tool, always ensure the oldString is as short and unique as possible to avoid whitespace/indentation errors. If you face an edit failure, fallback to rewriting the target function entirely rather than trying to match complex multi-line indentations.

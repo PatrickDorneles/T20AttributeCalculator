@@ -5,6 +5,7 @@ import type { Character } from "../../types/Character";
 import { Logo } from "../svg/Logo"
 import { QRCodeSVG } from 'qrcode.react'
 import LZString from 'lz-string'
+import { serializeCharacter } from "../../functions/characterSerialization"
 
 interface ExportImageProps {
   char: Character;
@@ -16,7 +17,7 @@ interface ExportImageProps {
 export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captureRef }: ExportImageProps) => {
   const t = useTranslations("Main")
 
-  const charString = JSON.stringify(char)
+  const charString = serializeCharacter(char)
   const compressed = LZString.compressToEncodedURIComponent(charString)
   const url = `${typeof window !== 'undefined' ? window.location.origin : ''}?char=${compressed}`
 
@@ -27,6 +28,7 @@ export const ExportImage = ({ char, configOthersPointsSection, showQRCode, captu
           <div className="flex flex-col items-center gap-2 mb-4">
             <h2 className="text-4xl font-bold font-display">{char.name || 'Character'}</h2>
             <p className="text-xl">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {t('calculator.exportImage.raceLabel')}: {char.race === 'Other' ? (char.customRaceName || t('races.Other' as any)) : t(`races.${char.race}` as any)}
             </p>
             <p className="text-lg">{t('calculator.exportImage.pointsLabel')}: {char.points.left} / {char.points.total}</p>
