@@ -1,5 +1,4 @@
-import type { RacialBonus, RaceData } from "../types/BookResources";
-import { Race } from "../types/BookResources";
+import type { RacialBonus, RaceData, Race } from "../types/BookResources";
 import racesData from "./races.json";
 
 export const RacialBonusMap = new Map<Race, RacialBonus>(

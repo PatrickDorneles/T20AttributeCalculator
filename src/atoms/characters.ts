@@ -1,7 +1,6 @@
 import { atomWithStorage } from 'jotai/utils'
 import type { Character } from '../types/Character'
 import { nanoid } from 'nanoid'
-import { Race } from '../types/BookResources'
 
 export const characters = atomWithStorage<Character[]>('chars', [])
 

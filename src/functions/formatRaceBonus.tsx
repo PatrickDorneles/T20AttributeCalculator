@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
-import React, { ReactNode } from 'react'
-import { RacialBonus } from "../types/BookResources"
+import React, { type ReactNode } from 'react'
+import type { RacialBonus } from "../types/BookResources"
 import { useTranslations } from 'next-intl'
 
 type AttributeKey = 'strength' | 'dexterity' | 'constitution' | 'intelligence' | 'wisdom' | 'charisma'
@@ -71,22 +71,24 @@ export const useFormatRaceBonus = () => {
             
             let content: React.ReactNode = <span>{distributeText}</span>
 
-            if (bonus.type === 'mixed') {
-                const exceptions = entries.filter(([_, val]) => val !== 0)
-                    .map(([attr, val]) => (
-                        <span key={attr}>
-                            {t(`calculator.attributeNames.${attr}` as any)} (<span className={val > 0 ? 'text-green-400' : 'text-red-400'}>{val > 0 ? `+${val}` : val}</span>)
-                        </span>
-                    ))
-                
-                if (exceptions.length > 0) {
-                    content = (
-                        <span>
-                            {distributeText}, <span className="opacity-80">{t('raceSelector.except')} {renderList(exceptions)}</span>
-                        </span>
-                    )
-                }
+        if (bonus.type === 'mixed') {
+            const exceptions = bonus.exceptions || []
+            const exceptionEntries = entries.filter(([attr]) => exceptions.includes(attr))
+                .map(([attr, val]) => (
+                    <span key={attr}>
+                        {t(`calculator.attributeNames.${attr}` as any)} (<span className={val > 0 ? 'text-green-400' : 'text-red-400'}>{val > 0 ? `+${val}` : val}</span>)
+                    </span>
+                ))
+            
+            if (exceptionEntries.length > 0) {
+                content = (
+                    <span>
+                        {distributeText}, <span className="opacity-80">{t('raceSelector.except')} {renderList(exceptionEntries)}</span>
+                    </span>
+                )
             }
+        }
+
             
             return content
         }

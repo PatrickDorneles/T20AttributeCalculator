@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import packageInfo from '../../package.json'
 import { useRouter } from 'next/router'
 import LZString from 'lz-string'
+import { deserializeCharacter } from "../functions/characterSerialization"
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -32,7 +33,7 @@ const Home: NextPage = () => {
       try {
         const decompressed = LZString.decompressFromEncodedURIComponent(charData)
         if (decompressed) {
-          const char = JSON.parse(decompressed)
+          const char = deserializeCharacter(decompressed)
           setChar(char)
         }
       } catch (err) {

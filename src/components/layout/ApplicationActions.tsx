@@ -6,6 +6,7 @@ import {
   UsersIcon
 } from '@heroicons/react/24/solid';
 import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 interface ApplicationActionsProps {
   onOpenCharManager: () => void;
@@ -44,6 +45,7 @@ export const ApplicationActions = ({
           </span>
         </div>
         <div className="flex flex-col gap-2 items-center">
+          <LanguageSwitcher />
           <div className="group relative flex items-center justify-center">
             <button onClick={onExportJson} className="text-white hover:text-red-200 transition-transform hover:scale-110 active:opacity-50">
               <ArrowUpTrayIcon className="w-6 h-6" />

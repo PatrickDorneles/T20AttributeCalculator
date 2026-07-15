@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useAtom } from "jotai"
-import { Dialog } from '@headlessui/react'
 import { RacialBonusMap } from "../../resources/RacialBonusMap";
 import { useTranslations } from 'next-intl'
 import { activeCharacter, getDefaultCharacter } from "../../atoms/characters"
-import type { Race } from "../../types/BookResources";
-import { SortRaces } from "../../functions/SortRaces";
 import { RaceSelectorModal } from "../layout/RaceSelectorModal";
 import { useFormatRaceBonus } from "../../functions/formatRaceBonus";
 
