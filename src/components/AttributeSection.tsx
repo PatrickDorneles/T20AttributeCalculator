@@ -137,13 +137,17 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?:
         {!hideControls && (
           <button className="bg-red-600 rounded-t w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
             onClick={() => addToField('race')}
-             disabled={
-               !!(raceBonus && 
-               (raceBonus.type === 'choice' || raceBonus.type === 'mixed') && 
-               (attribute.race >= raceBonus.maxPerAttribute || chosenRacialPoints >= raceBonus.pointsToChoose))
-             }
-
-
+            disabled={
+              (() => {
+                if (!raceBonus || (raceBonus.type !== 'choice' && raceBonus.type !== 'mixed')) return true;
+                if (raceBonus.type === 'mixed' && raceBonus.exceptions?.includes(name)) return true;
+                
+                const staticBonus = (raceBonus.type === 'mixed' ? (raceBonus.attrs as Record<string, number>)[name] : 0) ?? 0;
+                const maxValue = staticBonus + (raceBonus.maxPerAttribute ?? 0);
+                
+                return attribute.race >= maxValue || chosenRacialPoints >= raceBonus.pointsToChoose;
+              })()
+            }
           >
             <ChevronUpIcon className="w-6 text-white" />
           </button>
@@ -154,7 +158,14 @@ export const AttributeGroup: FC<{ name: keyof Character['attrs']; hideControls?:
         {!hideControls && (
           <button className="bg-red-600 rounded-b w-full hover:bg-red-800 active:opacity-50 disabled:opacity-0 flex items-center justify-center"
             onClick={() => subFromField('race')}
-            disabled={raceBonus?.type !== 'free' && attribute.race <= 0}
+            disabled={
+              (() => {
+                const minRaceBonus = raceBonus && (raceBonus.type === 'strict' || raceBonus.type === 'mixed')
+                  ? ((raceBonus.attrs as Record<string, number>)[name] ?? 0)
+                  : 0;
+                return attribute.race <= minRaceBonus;
+              })()
+            }
           >
             <ChevronDownIcon className="w-6 text-white" />
           </button>
