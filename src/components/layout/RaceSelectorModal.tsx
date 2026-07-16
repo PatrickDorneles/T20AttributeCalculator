@@ -125,7 +125,7 @@ export const RaceSelectorModal = ({ open, onClose }: RaceSelectorModalProps) => 
               return (
                 <div key={source} className="mb-6">
                   <h3 className="text-xs uppercase font-bold text-red-300 mb-3 border-b border-red-700 pb-1">
-                    {source}
+                    {t(`sources.${source}` as any)}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {filteredRaces.map(raceId => {
