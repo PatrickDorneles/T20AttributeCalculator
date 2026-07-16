@@ -107,14 +107,29 @@
       "DwarfTrog": "Dwarf Trog",
       "Velocis": "Velocis",
       "Voracis": "Voracis",
-      "Yidishan": "Yidishan"
+      "Yidishan": "Yidishan",
+      "DwarfGhanor": "Dwarf (Ghanor)",
+      "ElfGhanor": "Elf (Ghanor)",
+      "GiantGhanor": "Giant (Ghanor)",
+      "HobgoblinGhanor": "Hobgoblin (Ghanor)",
+      "HalfElfGhanor": "Half-Elf (Ghanor)",
+      "CambionGhanor": "Cambion (Ghanor)",
+      "NephilimGhanor": "Nephilim (Ghanor)",
+      "AberrantGhanor": "Aberrant (Ghanor)",
+      "Pixie": "Pixie",
+      "Eiradaan": "Eiradaan",
+      "Galokk": "Galokk",
+      "HalfElf": "Half-Elf",
+      "Satyr": "Satyr"
     },
     "sources": {
       "other": "Other",
       "t20jdo": "Tormenta20: Game of The Year",
       "threatsOfArton": "Threats of Arton",
       "moreauHeritages": "Threats of Arton: Moreau Heritages",
-      "golemChassis": "Threats of Arton: Golem Chassis"
+      "golemChassis": "Threats of Arton: Golem Chassis",
+      "ghanor": "Ghanor",
+      "heroisDeArton": "Heróis de Arton"
     },
     "calculator": {
       "heading": {

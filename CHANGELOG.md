@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.1.0] - 2026-07-15
+## [2.2.0] - 2026-07-16
 ### Added
 - Implemented language switcher and fixed racial bonus max check.
 - Added natural language search for races, bonus info card, and improved `RaceSelectorModal` with grouping.
